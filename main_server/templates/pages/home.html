@@ -1,0 +1,42 @@
+{% extends 'models/main.html' %}
+{% block title %}RaspiBio{% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="static/css/terminal.css" />
+<link rel="stylesheet" href="static/css/home_layout.css" />
+{% endblock %}
+{% block content %}
+
+<div class="page-header">
+  <h1>RaspiBio</h1>
+</div>
+<div class="lead row" id="one-true">
+  <div class="column" id="children">
+    <table>
+      <tr><td>Children</td></tr>
+      {% for result in children %}
+        <tr>
+          {% for field in result %}
+            <td>{{field}}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+  <div class="column" id="data">
+    <table>
+      <tr><td>Recent Data</td></tr>
+      {% for result in recent_data %}
+        <tr>
+          {% for field in result %}
+            <td>{{field}}</td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block post_scripts %}
+{% endblock %}
