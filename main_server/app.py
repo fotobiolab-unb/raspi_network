@@ -2,7 +2,7 @@
 # Imports
 #----------------------------------------------------------------------------#
 
-from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask import Flask, render_template, request, jsonify, send_from_directory, url_for
 import logging
 # import listener
 from logging import Formatter, FileHandler
@@ -34,6 +34,12 @@ def home():
         children = database_manager.fetch_children()
         recent_data = database_manager.fetch_recent_data()
         return render_template('pages/home.html', children=children, recent_data=recent_data)
+
+@app.route('/assignments', methods=['GET', 'POST'])
+def assignments():
+    if request.method == "GET":
+        assignments = database_manager.fetch_assignments()
+        return render_template('pages/assignments.html', assignments=assignments)
 
 if not app.debug:
     file_handler = FileHandler('error.log')

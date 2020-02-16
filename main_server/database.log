@@ -21,3 +21,236 @@ INFO:werkzeug:127.0.0.1 - - [09/Feb/2020 19:08:28] "GET /static/css/home_layout.
 INFO:werkzeug:127.0.0.1 - - [09/Feb/2020 19:08:29] "GET /favicon.ico HTTP/1.1" 404 -
 INFO:werkzeug:127.0.0.1 - - [09/Feb/2020 19:08:34] "GET / HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [09/Feb/2020 19:08:35] "GET /static/css/misc.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [09/Feb/2020 19:13:34] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Feb/2020 19:13:35] "GET /static/css/misc.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [09/Feb/2020 19:25:31] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Feb/2020 19:25:31] "GET /static/css/terminal.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Feb/2020 19:25:31] "GET /static/css/misc.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [09/Feb/2020 19:25:32] "GET /static/css/home_layout.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Feb/2020 19:25:33] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [09/Feb/2020 19:26:33] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Feb/2020 19:26:34] "GET /static/css/misc.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [09/Feb/2020 19:27:45] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Feb/2020 19:28:14] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [09/Feb/2020 19:28:14] "GET /static/css/misc.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [10/Feb/2020 09:42:03] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Feb/2020 09:42:03] "GET /static/css/terminal.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Feb/2020 09:42:03] "GET /static/css/misc.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [10/Feb/2020 09:42:03] "GET /static/css/home_layout.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [10/Feb/2020 09:42:04] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Feb/2020 12:37:00] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Feb/2020 12:37:01] "GET /static/css/terminal.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Feb/2020 12:37:01] "GET /static/css/home_layout.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Feb/2020 12:37:01] "GET /static/css/misc.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Feb/2020 12:37:02] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Feb/2020 12:39:53] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Feb/2020 12:39:54] "GET /static/css/misc.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Feb/2020 12:39:54] "GET /static/css/terminal.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Feb/2020 12:39:54] "GET /static/css/home_layout.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Feb/2020 12:39:55] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Feb/2020 12:40:48] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Feb/2020 12:40:48] "GET /static/css/misc.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Feb/2020 12:40:49] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Feb/2020 14:43:14] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Feb/2020 14:43:14] "GET /static/css/home_layout.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Feb/2020 14:43:14] "GET /static/css/terminal.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Feb/2020 14:43:14] "GET /static/css/misc.css HTTP/1.1" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Feb/2020 14:43:16] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug: * Detected change in '/home/pi/raspberry_network/main_server/database_manager.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 195-197-914
+INFO:werkzeug: * Detected change in '/home/pi/raspberry_network/main_server/database_manager.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 195-197-914
+INFO:werkzeug: * Detected change in '/home/pi/raspberry_network/main_server/database_manager.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 195-197-914
+INFO:werkzeug: * Detected change in '/home/pi/raspberry_network/main_server/database_manager.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 195-197-914
+INFO:root:	New batch started with id 1
+INFO:werkzeug: * Detected change in '/home/pi/raspberry_network/main_server/database_manager.py', reloading
+INFO:werkzeug: * Restarting with stat
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 127.0.0.1:80
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.google.com:80
+DEBUG:urllib3.connectionpool:http://www.google.com:80 "GET / HTTP/1.1" 200 5316
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): ww.google.com:80
+DEBUG:urllib3.connectionpool:http://ww.google.com:80 "GET / HTTP/1.1" 302 220
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.google.com:443
+DEBUG:urllib3.connectionpool:https://www.google.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): ww.google.com:80
+DEBUG:urllib3.connectionpool:http://ww.google.com:80 "GET / HTTP/1.1" 302 220
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.google.com:443
+DEBUG:urllib3.connectionpool:https://www.google.com:443 "GET / HTTP/1.1" 200 None
+INFO:root:	New batch started with id 1
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): ww.google.com:80
+DEBUG:urllib3.connectionpool:http://ww.google.com:80 "GET / HTTP/1.1" 302 220
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.google.com:443
+DEBUG:urllib3.connectionpool:https://www.google.com:443 "GET / HTTP/1.1" 200 None
+INFO:root:	New batch started with id 1
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): ww.google.com:80
+DEBUG:urllib3.connectionpool:http://ww.google.com:80 "GET / HTTP/1.1" 302 220
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.google.com:443
+DEBUG:urllib3.connectionpool:https://www.google.com:443 "GET / HTTP/1.1" 200 None
+INFO:root:	New batch started with id 1
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): ww.google.com:80
+DEBUG:urllib3.connectionpool:http://ww.google.com:80 "GET / HTTP/1.1" 302 220
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.google.com:443
+DEBUG:urllib3.connectionpool:https://www.google.com:443 "GET / HTTP/1.1" 200 None
+INFO:root:	New batch started with id 1
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): ww.google.com:80
+DEBUG:urllib3.connectionpool:http://ww.google.com:80 "GET / HTTP/1.1" 302 220
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.google.com:443
+DEBUG:urllib3.connectionpool:https://www.google.com:443 "GET / HTTP/1.1" 200 None
+INFO:root:	New batch started with id 1
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): ww.google.com:80
+DEBUG:urllib3.connectionpool:http://ww.google.com:80 "GET / HTTP/1.1" 302 220
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.google.com:443
+DEBUG:urllib3.connectionpool:https://www.google.com:443 "GET / HTTP/1.1" 200 None
+INFO:root:	New batch started with id 1
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): ww.google.com:80
+DEBUG:urllib3.connectionpool:http://ww.google.com:80 "GET / HTTP/1.1" 302 220
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.google.com:443
+DEBUG:urllib3.connectionpool:https://www.google.com:443 "GET / HTTP/1.1" 200 None
+INFO:root:	New batch started with id 1
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): ww.google.com:80
+DEBUG:urllib3.connectionpool:http://ww.google.com:80 "GET / HTTP/1.1" 302 220
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.google.com:443
+DEBUG:urllib3.connectionpool:https://www.google.com:443 "GET / HTTP/1.1" 200 None
+INFO:root:	New batch started with id 1
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): ww.google.com:80
+DEBUG:urllib3.connectionpool:http://ww.google.com:80 "GET / HTTP/1.1" 302 220
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.google.com:443
+DEBUG:urllib3.connectionpool:https://www.google.com:443 "GET / HTTP/1.1" 200 None
+INFO:root:	New batch started with id 1
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): ww.google.com:80
+DEBUG:urllib3.connectionpool:http://ww.google.com:80 "GET / HTTP/1.1" 302 220
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.google.com:443
+DEBUG:urllib3.connectionpool:https://www.google.com:443 "GET / HTTP/1.1" 200 None
+INFO:root:	New batch started with id 1
+INFO:root:	Adding IP 127.0.0.1 in table children.
+INFO:root:	New batch started with id 1
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.google.com:80
+DEBUG:urllib3.connectionpool:http://www.google.com:80 "GET / HTTP/1.1" 200 5291
+INFO:root:	New batch started with id 1
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.google.com:80
+DEBUG:urllib3.connectionpool:http://www.google.com:80 "GET / HTTP/1.1" 200 5291
+INFO:root:	New batch started with id 1
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.google.com:80
+DEBUG:urllib3.connectionpool:http://www.google.com:80 "GET / HTTP/1.1" 200 5293
+INFO:root:	New batch started with id 1
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.google.com:80
+DEBUG:urllib3.connectionpool:http://www.google.com:80 "GET / HTTP/1.1" 200 5313
+INFO:root:	New batch started with id 1
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.google.com:80
+DEBUG:urllib3.connectionpool:http://www.google.com:80 "GET / HTTP/1.1" 200 5307
+INFO:root:	New batch started with id 2
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.google.com:80
+DEBUG:urllib3.connectionpool:http://www.google.com:80 "GET / HTTP/1.1" 200 5321
+INFO:root:	New batch started with id 2
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.google.com:80
+DEBUG:urllib3.connectionpool:http://www.google.com:80 "GET / HTTP/1.1" 200 5333
+INFO:root:	New batch started with id 2
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.google.com:80
+DEBUG:urllib3.connectionpool:http://www.google.com:80 "GET / HTTP/1.1" 200 5305
+INFO:root:	New batch started with id 2
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.google.com:80
+DEBUG:urllib3.connectionpool:http://www.google.com:80 "GET / HTTP/1.1" 200 5292
+INFO:root:	New batch started with id 2
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.google.com:80
+DEBUG:urllib3.connectionpool:http://www.google.com:80 "GET / HTTP/1.1" 200 5281
+INFO:root:	New batch started with id 3
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.google.com:80
+DEBUG:urllib3.connectionpool:http://www.google.com:80 "GET / HTTP/1.1" 200 5320
+INFO:root:	New batch started with id 3
+INFO:root:	Adding IP 127.0.0.1 in table children.
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): www.google.com:80
+DEBUG:urllib3.connectionpool:http://www.google.com:80 "GET / HTTP/1.1" 200 5314
+INFO:root:	New batch started with id 1
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 195-197-914
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 19:56:55] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 19:56:55] "GET /static/css/terminal.css HTTP/1.1" 200 -
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 19:56:55] "GET /static/css/home_layout.css HTTP/1.1" 200 -
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 19:56:56] "GET /static/css/misc.css HTTP/1.1" 404 -
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 19:56:57] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:werkzeug: * Detected change in '/home/pi/raspberry_network/main_server/database_manager.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 195-197-914
+INFO:werkzeug: * Detected change in '/home/pi/raspberry_network/main_server/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 195-197-914
+INFO:werkzeug: * Detected change in '/home/pi/raspberry_network/main_server/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 195-197-914
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 195-197-914
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:01:38] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:01:38] "GET /static/css/misc.css HTTP/1.1" 404 -
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:01:44] "GET /assignments HTTP/1.1" 404 -
+INFO:werkzeug: * Detected change in '/home/pi/raspberry_network/main_server/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 195-197-914
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 195-197-914
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:02:02] "GET /assignments HTTP/1.1" 500 -
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:02:02] "GET /assignments?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:02:02] "GET /assignments?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:02:02] "GET /assignments?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:02:03] "GET /assignments?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:02:03] "GET /assignments?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in '/home/pi/raspberry_network/main_server/database_manager.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 195-197-914
+INFO:werkzeug: * Detected change in '/home/pi/raspberry_network/main_server/database_manager.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 195-197-914
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 195-197-914
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:02:42] "GET /assignments HTTP/1.1" 200 -
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:02:43] "GET /static/css/misc.css HTTP/1.1" 404 -
+INFO:werkzeug: * Detected change in '/home/pi/raspberry_network/main_server/app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 195-197-914
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 195-197-914
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:08:30] "GET /assignments HTTP/1.1" 500 -
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:08:30] "GET /assignments?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:08:30] "GET /assignments?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:08:30] "GET /assignments?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1" 200 -
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:08:31] "GET /assignments?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:08:31] "GET /assignments?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 195-197-914
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:08:57] "GET /assignments HTTP/1.1" 200 -
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:08:58] "GET /static/css/misc.css HTTP/1.1" 404 -
+INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 195-197-914
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:11:49] "GET /assignments HTTP/1.1" 200 -
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:11:49] "GET /static/css/misc.css HTTP/1.1" 404 -
+INFO:werkzeug:192.168.1.3 - - [16/Feb/2020 20:11:56] "GET /static/css/misc.css HTTP/1.1" 404 -

@@ -17,7 +17,6 @@ def db(database):
         return inner
     return decorator
 
-
 def initialize_tables(filename):
     connection = sqlite3.connect(filename)
     cursor = connection.cursor()
@@ -29,13 +28,13 @@ def initialize_tables(filename):
     cursor.execute("create table if not exists bio (id integer,\
                                                     batch_id integer,\
                                                     timestamp datetime default current_timestamp,\
-                                                    chromossome_data blob,\
+                                                    chromossome_data text,\
                                                     fitness real,\
                                                     foreign key(id) references children(id));")
     cursor.execute("create table if not exists assignment (id integer,\
                                                            batch_id integer,\
-                                                           request_id,\
-                                                           chromossome_data blob,\
+                                                           request_id integer primary key autoincrement,\
+                                                           chromossome_data text,\
                                                            fitness real default 0,\
                                                            status integer default 0,\
                                                            foreign key(id) references children(id));")
@@ -53,7 +52,10 @@ def dump_bin_data(cursor,IP,fitness,chromossome_data):
 
 @db(database=config["database_path"])
 def add_new_child(cursor,IP,name,url):
-    cursor.execute(f"insert into children(IP,name,url) values ('{IP}', '{name}', {url});")
+    """
+    Url must contain full path
+    """
+    cursor.execute("insert into children(IP,name,url) values (?, ?, ?);", (IP, name, url))
     logging.info(f"\tAdding IP {IP} in table children.")
 
 @db(database=config["database_path"])
@@ -72,6 +74,11 @@ def fetch_recent_data(cursor, limit=5):
     return recent_data
 
 @db(database=config["database_path"])
+def fetch_assignments(cursor, limit=5):
+    recent_data = cursor.execute(f"select * from assignment order by batch_id desc;").fetchall()
+    return recent_data
+
+@db(database=config["database_path"])
 def get_new_batch_id(cursor):
     batch_id = cursor.execute("select batch_id from bio order by batch_id desc limit 1;").fetchone()
     batch_id = batch_id[0]+1 if batch_id else 1 #Do not set to zero
@@ -79,14 +86,30 @@ def get_new_batch_id(cursor):
     return batch_id
 
 @db(database=config["database_path"])
-def check_exsiting_batch():
-    batch_id = cursor.execute("select batch_id from assignment order by desc limit 1;").fetchone()
-    batch_id = batch_id if batch_id else False
-    return batch_id
+def get_exsiting_batch(cursor):
+    batch_id = cursor.execute("select batch_id from assignment order by batch_id desc limit 1;").fetchone()
+    batch_id = batch_id[0] if batch_id else False
+    data = []
+    if batch_id:
+        data = cursor.execute(f"""select * from assignment
+                                join children on assignment.id=children.id
+                                where batch_id=? and status=0""", (batch_id,)).fetchall()
+        if len(data)==0:
+            """If this is empty, then all assignments are done. Move them to history."""
+            cursor.execute(f"""insert into bio(id, batch_id, chromossome_data, fitness)
+                            select id, batch_id, chromossome_data, fitness from assignment where assignment.batch_id=?;""", (batch_id,))
+            cursor.execute(f"""delete from assignment where batch_id=?;""", (batch_id,))
+    return data
 
 @db(database=config["database_path"])
 def create_assignment(cursor,id,data,batch_id):
     cursor.execute(f"insert into assignment(batch_id,id,chromossome_data) values ({batch_id}, {id}, ?);", (data,))
+
+@db(database=config["database_path"])
+def create_assignments(cursor,iterable,batch_id):
+    for id,batch in iterable:
+        for data in batch:
+            cursor.execute("insert into assignment(batch_id,id,chromossome_data) values (?, ?, ?);", (batch_id,id,str(data.tolist())))
 
 @db(database=config["database_path"])
 def update_assignment(fitness,request_id):
@@ -94,4 +117,6 @@ def update_assignment(fitness,request_id):
 
 if __name__=="__main__":
     initialize_tables(config["database_path"])
-    print(get_new_batch_id())
+    add_new_child('127.0.0.1','localhost','http://www.google.com')
+    #print(get_new_batch_id())
+    get_exsiting_batch()

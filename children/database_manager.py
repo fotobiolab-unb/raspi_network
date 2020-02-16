@@ -24,7 +24,7 @@ def initialize_tables(filename):
                                                          name text);")
     cursor.execute("create table if not exists bio (id integer,\
                                                     timestamp datetime default current_timestamp,\
-                                                    chromossome_data blob,\
+                                                    chromossome_data text,\
                                                     fitness real,\
                                                     foreign key(id) references children(id));")
     connection.commit()
