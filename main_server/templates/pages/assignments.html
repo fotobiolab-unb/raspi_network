@@ -9,27 +9,35 @@
 <div class="page-header">
   <h1>RaspiBio</h1>
 </div>
-<div class="lead row" id="one-true">
-  <div class="column" id="data">
-    <table>
-      <tr><td>Assignments</td></tr>
-      {% for result in assignments %}
-        <tr>
-          {% for field in result[:-1] %}
-            <td>{{field}}</td>
-          {% endfor %}
-          {% if result[-1] == 0 %}
-            <td style="color: 'grey'">&#11044;</td>
-          {% else %}
-            <td style="color: 'royalblue'">&#11044;</td>
-          {% endif %}
-        </tr>
-      {% endfor %}
-    </table>
+<div class="lead" id="one-true">
+  <div class="row">
+    <div class="column" id="data">
+      <table>
+        <tr><td>Assignments</td></tr>
+        {% for result in assignments %}
+          <tr>
+            {% for field in result[:-1] %}
+              <td>{{field}}</td>
+            {% endfor %}
+            {% if result[-1] == 0 %}
+              <td style="color: 'grey'">&#11044;</td>
+            {% else %}
+              <td style="color: 'royalblue'">&#11044;</td>
+            {% endif %}
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <input id="push_button" type="button" name="Push" value="push">
+    </div>
   </div>
 </div>
 
 {% endblock %}
 
 {% block post_scripts %}
+<script type="text/javascript" src="static/js/assignments.js"></script>
 {% endblock %}

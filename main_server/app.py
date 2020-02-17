@@ -9,6 +9,7 @@ from logging import Formatter, FileHandler
 import os
 import json
 import database_manager
+import hanashi
 
 #----------------------------------------------------------------------------#
 # App Config.
@@ -40,6 +41,15 @@ def assignments():
     if request.method == "GET":
         assignments = database_manager.fetch_assignments()
         return render_template('pages/assignments.html', assignments=assignments)
+
+@app.route('/push', methods=['GET', 'POST'])
+def push():
+    """
+    Pushes all assignments to the children servers.
+    """
+    if request.method == "GET":
+        notification = hanashi.step()
+        return notification, 200
 
 if not app.debug:
     file_handler = FileHandler('error.log')

@@ -91,7 +91,7 @@ def get_exsiting_batch(cursor):
     batch_id = batch_id[0] if batch_id else False
     data = []
     if batch_id:
-        data = cursor.execute(f"""select * from assignment
+        data = cursor.execute(f"""select assignment.id,batch_id,request_id,fitness,url,IP from assignment
                                 join children on assignment.id=children.id
                                 where batch_id=? and status=0""", (batch_id,)).fetchall()
         if len(data)==0:

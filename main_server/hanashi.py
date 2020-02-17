@@ -4,6 +4,8 @@ import numpy as np
 import database_manager
 import grequests
 import os
+import logging
+logging.basicConfig(filename="hanashi.log", level=logging.DEBUG)
 
 """
 Module for communication among raspberry units
@@ -49,6 +51,23 @@ def update_assignment(request_id, fitness):
     request_id is automatic on table assignment.
     """
     database_manager.update_assignment(request_id,fitness)
+
+def step():
+    """
+    Used on push
+    """
+    unresolved = check_exsiting_batch()
+    columns = ["id","batch_id","request_id","fitness","url","IP"]
+    requests = [grequests.post(columns[4], data = dict(zip(columns,x))) for x in unresolved]
+    gmap = grequests.map(requests)
+    """
+    The output will be another dictionary whse values will be used to update the database. The result is caught by a get in Flask.
+    """
+    success = list(filter(lambda x: x!=None and x.ok,gmap))
+    notification = f"Executed batch post, {len(success)} out of {len(requests)} returned 200."
+    logging.info(notification)
+    return notification
+
 
 if __name__=="__main__":
     a = np.random.randint(0,10,(5,3))
