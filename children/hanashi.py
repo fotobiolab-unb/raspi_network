@@ -78,8 +78,6 @@ async def set(data):
     When done, sends a request back to the main server.
     """
 
-    database_manager.create_assignment(id,data,batch_id,request_id)
-
     chromossome = batch["chromossome_data"]
     if isinstance(chromossome, str):
         chromossome = eval(chromossome)
