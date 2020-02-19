@@ -1,4 +1,5 @@
 {
   "database_path": "database.db",
-  "children_port": 5000
+  "children_port": 5000,
+  "time": 30
 }

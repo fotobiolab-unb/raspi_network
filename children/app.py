@@ -9,6 +9,8 @@ from logging import Formatter, FileHandler
 import os
 import json
 import database_manager
+import hanashi
+import asyncio
 
 #----------------------------------------------------------------------------#
 # App Config.
@@ -34,6 +36,27 @@ def home():
         children = database_manager.fetch_children()
         recent_data = database_manager.fetch_recent_data()
         return render_template('pages/home.html', children=children, recent_data=recent_data)
+
+@app.route('/listen', methods=['GET', 'POST'])
+def listen():
+    """
+    Update information to arduino and save to database.
+    """
+    if request.method == "POST":
+        batch = request.json()
+        #Do whatever with the data
+        id = batch["id"]
+        data = batch["chromossome"]
+        batch_id = batch["batch_id"]
+        request_id = batch["request_id"]
+        database_manager.create_assignment(id,data,batch_id,request_id)
+        asyncio.run(hanashi.set(batch))
+
+"""
+#Make a route for when the communication fails or the computer restarts.
+A separate python script should make a call to this route in case an assignment is
+still pending periodically.
+"""
 
 if not app.debug:
     file_handler = FileHandler('error.log')

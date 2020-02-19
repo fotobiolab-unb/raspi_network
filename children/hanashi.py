@@ -5,6 +5,8 @@ import database_manager
 import grequests
 import os
 import logging
+import asyncio
+import requests
 logging.basicConfig(filename="hanashi.log", level=logging.DEBUG)
 
 """
@@ -57,10 +59,9 @@ def step():
     Used on push
     """
     unresolved = check_exsiting_batch()
-    columns = ["id","batch_id","request_id","fitness","url","IP","chromossome_data","server_addr"]
+    columns = ["id","batch_id","request_id","fitness","url","IP","chromossome_data"]
     data = dict(zip(columns,x))
     data["time"] = config["time"]
-    data["server_addr"] = config["server_addr"]
     requests = [grequests.post(columns[4], data = data) for x in unresolved]
     gmap = grequests.map(requests)
     """
@@ -70,6 +71,33 @@ def step():
     notification = f"Executed batch post, {len(success)} out of {len(requests)} returned 200."
     logging.info(notification)
     return notification
+
+async def set(data):
+    """
+    Set to experiment.
+    When done, sends a request back to the main server.
+    """
+
+    database_manager.create_assignment(id,data,batch_id,request_id)
+
+    chromossome = batch["chromossome_data"]
+    if isinstance(chromossome, str):
+        chromossome = eval(chromossome)
+    id = batch["id"]
+    request_id = batch_id["request_id"]
+    batch_id = batch_id["batch_id"]
+    time = batch_id["time"]
+
+    #Set value to experiment
+    sleep(time)
+    #Get value from experiment
+    f = 0
+    database_manager.update_assignment(f,request_id)
+
+    #Posting back to main server
+    data["fitness"] = f
+    url = data["server_addr"]
+    requests.post(url,data=data)
 
 
 if __name__=="__main__":
