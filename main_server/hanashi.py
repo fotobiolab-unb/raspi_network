@@ -56,15 +56,20 @@ def step():
     """
     Used on push
     """
+    #What in the absolute fuck I did here?
     unresolved = check_exsiting_batch()
-    columns = ["id","batch_id","request_id","fitness","url","IP","chromossome_data","server_addr"]
-    data = dict(zip(columns,x))
-    data["time"] = config["time"]
-    data["server_addr"] = config["server_addr"]
-    requests = [grequests.post(columns[4], data = data) for x in unresolved]
+    columns = ["id","batch_id","request_id","fitness","url","IP","chromossome_data"]
+    data = []
+    for packet in unresolved:
+        p_dict = dict(zip(columns,packet))
+        p_dict["time"] = config["time"]
+        p_dict["server_addr"] = config["server_addr"]
+        data.append(p_dict)
+    requests = [grequests.post(x["url"], json = x) for x in data]
+    logging.info(f"Sending packet: {data}")
     gmap = grequests.map(requests)
     """
-    The output will be another dictionary whse values will be used to update the database. The result is caught by a get in Flask.
+    The output will be another dictionary whose values will be used to update the database. The result is caught by a get in Flask.
     """
     success = list(filter(lambda x: x!=None and x.ok,gmap))
     notification = f"Executed batch post, {len(success)} out of {len(requests)} returned 200."

@@ -11,6 +11,9 @@ import json
 import database_manager
 import hanashi
 import asyncio
+from sync import sync
+from multiprocessing import Process
+from gevent.pywsgi import WSGIServer
 
 #----------------------------------------------------------------------------#
 # App Config.
@@ -36,6 +39,29 @@ def home():
         children = database_manager.fetch_children()
         recent_data = database_manager.fetch_recent_data()
         return render_template('pages/home.html', children=children, recent_data=recent_data)
+    elif request.method == "POST":
+        """
+        Update information to arduino and save to database.
+        """
+        print(request)
+        batch = request.json
+        #Do whatever with the data
+        id = batch["id"]
+        data = batch["chromossome_data"]
+        batch_id = batch["batch_id"]
+        request_id = batch["request_id"]
+        #updating constants
+        server_url = batch["server_addr"]
+        time = batch["time"]
+        config = json.load(open("config.json"))
+        config["time"] = time
+        config["server_addr"] = server_url
+        json.dump(config,open("config.json", "w"))
+        #-----------------
+        database_manager.create_assignment(id,data,batch_id,request_id)
+        p = Process(target=sync())
+        p.start()
+        return "ok", 200
 
 @app.route('/listen', methods=['GET', 'POST'])
 def listen():
@@ -49,14 +75,20 @@ def listen():
         data = batch["chromossome"]
         batch_id = batch["batch_id"]
         request_id = batch["request_id"]
+        #updating constants
+        server_url = batch["server_addr"]
+        time = batch["time"]
+        config = json.load(open("config.json"))
+        config["time"] = time
+        config["server_addr"] = server_url
+        json.dump(config,open("config.json", "w"))
+        #-----------------
         database_manager.create_assignment(id,data,batch_id,request_id)
-        asyncio.run(hanashi.set(batch))
+        p = Process(target=sync)
+        p.start()
+        return "ok", 200
 
-"""
-#Make a route for when the communication fails or the computer restarts.
-A separate python script should make a call to this route in case an assignment is
-still pending periodically.
-"""
+
 
 if not app.debug:
     file_handler = FileHandler('error.log')
@@ -72,11 +104,7 @@ if not app.debug:
 # Launch.
 #----------------------------------------------------------------------------#
 
-# # Default port:
-# if __name__ == '__main__':
-#     app.run()
-
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    http_server = WSGIServer(('', 2001), app)
+    http_server.serve_forever()

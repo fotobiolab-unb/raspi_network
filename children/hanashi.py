@@ -7,6 +7,7 @@ import os
 import logging
 import asyncio
 import requests
+import time as time_
 logging.basicConfig(filename="hanashi.log", level=logging.DEBUG)
 
 """
@@ -48,11 +49,11 @@ def check_exsiting_batch():
     return database_manager.get_exsiting_batch()
     #This should already return a list of json elements or tuple
 
-def update_assignment(request_id, fitness):
+def update_assignment(request_id, fitness, sync=0):
     """
     request_id is automatic on table assignment.
     """
-    database_manager.update_assignment(request_id,fitness)
+    database_manager.update_assignment(request_id,fitness, sync=0)
 
 def step():
     """
@@ -72,12 +73,12 @@ def step():
     logging.info(notification)
     return notification
 
+
 async def set(data):
     """
     Set to experiment.
     When done, sends a request back to the main server.
     """
-
     chromossome = batch["chromossome_data"]
     if isinstance(chromossome, str):
         chromossome = eval(chromossome)
@@ -87,7 +88,7 @@ async def set(data):
     time = batch_id["time"]
 
     #Set value to experiment
-    sleep(time)
+    time_.sleep(time)
     #Get value from experiment
     f = 0
     database_manager.update_assignment(f,request_id)
@@ -96,6 +97,28 @@ async def set(data):
     data["fitness"] = f
     url = data["server_addr"]
     requests.post(url,data=data)
+
+def static_set(assignment_tuple):
+    #order: assignment.id,batch_id,request_id,fitness,url,IP,chromossome_data
+    data = dict(zip(["id","batch_id", "request_id", "fitness", "chromossome_data"], assignment_tuple))
+
+    chromossome = data["chromossome_data"]
+    if isinstance(chromossome, str):
+        chromossome = eval(chromossome)
+    id = assignment_tuple[0]
+    request_id = assignment_tuple[2]
+    batch_id = assignment_tuple[1]
+    time = config["time"]
+
+    logging.info(f"Working on {assignment_tuple}.")
+
+    #Set value to experiment
+    time_.sleep(time)
+    #Get value from experiment
+    f = 0
+    database_manager.update_assignment(f,request_id)
+
+
 
 
 if __name__=="__main__":

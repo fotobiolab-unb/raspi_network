@@ -10,6 +10,7 @@ import os
 import json
 import database_manager
 import hanashi
+from gevent.pywsgi import WSGIServer
 
 #----------------------------------------------------------------------------#
 # App Config.
@@ -28,17 +29,24 @@ config = json.load(open('config.json'))
 @app.route('/', methods=['GET', 'POST'])
 def home():
     """
-    GET: Loads a homepage to controll children raspberries.
+    GET: Loads a homepage to control children raspberries.
     POST: Receives info from children.
     """
     if request.method == "GET":
         children = database_manager.fetch_children()
         recent_data = database_manager.fetch_recent_data()
+        database_manager.get_exsiting_batch()
         return render_template('pages/home.html', children=children, recent_data=recent_data)
+    elif request.method == "POST":
+        data = request.json
+        database_manager.update_assignment(fitness=data["fitness"], request_id=data["request_id"])
+        database_manager.get_exsiting_batch()
+        return "ok", 200
 
 @app.route('/assignments', methods=['GET', 'POST'])
 def assignments():
     if request.method == "GET":
+        database_manager.get_exsiting_batch()
         assignments = database_manager.fetch_assignments()
         return render_template('pages/assignments.html', assignments=assignments)
 
@@ -71,5 +79,5 @@ if not app.debug:
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    http_server = WSGIServer(('', 2000), app)
+    http_server.serve_forever()

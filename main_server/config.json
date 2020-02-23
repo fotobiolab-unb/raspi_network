@@ -1,5 +1,6 @@
 {
   "database_path": "database.db",
-  "children_port": 5000,
-  "time": 30
+  "children_port": 2001,
+  "time": 1,
+  "server_addr": "http://192.168.1.2:2000"
 }

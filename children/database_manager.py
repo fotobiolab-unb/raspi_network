@@ -33,10 +33,11 @@ def initialize_tables(filename):
                                                     foreign key(id) references children(id));")
     cursor.execute("create table if not exists assignment (id integer,\
                                                            batch_id integer,\
-                                                           request_id integer primary key autoincrement,\
+                                                           request_id integer primary key,\
                                                            chromossome_data text,\
                                                            fitness real default 0,\
                                                            status integer default 0,\
+                                                           sync integer default 0,\
                                                            foreign key(id) references children(id));")
     connection.commit()
 
@@ -101,9 +102,46 @@ def get_exsiting_batch(cursor):
             cursor.execute(f"""delete from assignment where batch_id=?;""", (batch_id,))
     return data
 
+def get_exsiting_batch_gen():
+    connection = sqlite3.connect(config["database_path"])
+    cursor = connection.cursor()
+    query = cursor.execute(f"""select id,batch_id,request_id,fitness,chromossome_data from assignment
+                            where status=0 order by request_id desc""").fetchall()
+    connection.close()
+
+    for assignment in query:
+        yield assignment
+
+def to_be_sent():
+    connection = sqlite3.connect(config["database_path"])
+    cursor = connection.cursor()
+    query = cursor.execute(f"""select id,batch_id,request_id,fitness,chromossome_data from assignment
+                            where status=1 and sync=0 order by request_id desc""").fetchall()
+    connection.close()
+
+    for assignment in query:
+        yield assignment
+
+    #Saving done and sent assignments
+    connection = sqlite3.connect(config["database_path"])
+    cursor = connection.cursor()
+    cursor.execute(f"""insert into bio(id, batch_id, chromossome_data, fitness)
+                    select id, batch_id, chromossome_data, fitness from assignment where status=1 and sync=1;""")
+    cursor.execute(f"""delete from assignment where status=1 and sync=1;""")
+    connection.commit()
+    connection.close()
+
 @db(database=config["database_path"])
 def create_assignment(cursor,id,data,batch_id,request_id):
-    cursor.execute(f"insert into assignment(batch_id,id,request_id,chromossome_data) values ({batch_id}, {id}, {request_id} ,?);", (data,))
+    duplicates = cursor.execute("select count(request_id) from assignment where request_id=?", (request_id,)).fetchone()
+    try:
+        duplicates = duplicates[0]
+    except:
+        duplicates = 0
+    if duplicates==0:
+        cursor.execute(f"insert into assignment(batch_id,id,request_id,chromossome_data) values ({batch_id}, {id}, {request_id} ,?);", (data,))
+    else:
+        logging.warning(f"Duplicate found for request_id={request_id}. Keeping old entry.")
 
 @db(database=config["database_path"])
 def create_assignments(cursor,iterable,batch_id):
@@ -112,11 +150,11 @@ def create_assignments(cursor,iterable,batch_id):
             cursor.execute("insert into assignment(batch_id,id,chromossome_data) values (?, ?, ?);", (batch_id,id,str(data.tolist())))
 
 @db(database=config["database_path"])
-def update_assignment(fitness,request_id):
-    cursor.execute(f"update assignment set status=1, fitness={fitness} where request_id={request_id};")
+def update_assignment(cursor,fitness,request_id,sync=0):
+    cursor.execute(f"update assignment set status=1, fitness={fitness}, sync={sync} where request_id={request_id};")
 
 if __name__=="__main__":
     initialize_tables(config["database_path"])
-    add_new_child('127.0.0.1','localhost','http://www.google.com')
+    #add_new_child('127.0.0.1','localhost','http://www.google.com')
     #print(get_new_batch_id())
     get_exsiting_batch()
