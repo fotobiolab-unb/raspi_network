@@ -9,30 +9,39 @@
 <div class="page-header">
   <h1>RaspiBio</h1>
 </div>
-<div class="lead row" id="one-true">
-  <div class="column" id="children">
-    <table>
-      <tr><td>Children</td></tr>
-      {% for result in children %}
-        <tr>
-          {% for field in result %}
-            <td>{{field}}</td>
-          {% endfor %}
-        </tr>
-      {% endfor %}
-    </table>
+<div class="lead" id="one-true">
+  <div class="row">
+    <div class="column" id="children">
+      <table>
+        <tr><td>Children</td></tr>
+        {% for result in children %}
+          <tr>
+            {% for field in result %}
+              <td>{{field}}</td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
   </div>
-  <div class="column" id="data">
-    <table>
-      <tr><td>Recent Data</td></tr>
-      {% for result in recent_data %}
-        <tr>
-          {% for field in result %}
-            <td>{{field}}</td>
-          {% endfor %}
-        </tr>
-      {% endfor %}
-    </table>
+  <div class="row">
+    <div class="column" id="data">
+      <table>
+        <tr><td>Recent Data</td></tr>
+        {% for result in recent_data %}
+          <tr>
+            {% for field in result %}
+              <td>{{field}}</td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="column">
+    {{graph|safe}}
   </div>
 </div>
 

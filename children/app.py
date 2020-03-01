@@ -32,13 +32,11 @@ config = json.load(open('config.json'))
 @app.route('/', methods=['GET', 'POST'])
 def home():
     """
-    GET: Loads a homepage to controll children raspberries.
+    GET: Loads a homepage to control children raspberries.
     POST: Receives info from children.
     """
     if request.method == "GET":
-        children = database_manager.fetch_children()
-        recent_data = database_manager.fetch_recent_data()
-        return render_template('pages/home.html', children=children, recent_data=recent_data)
+        return "ok", 200
     elif request.method == "POST":
         """
         Update information to arduino and save to database.
@@ -54,6 +52,7 @@ def home():
         server_url = batch["server_addr"]
         time = batch["time"]
         config = json.load(open("config.json"))
+        #updating config in case it changes on the main server
         config["time"] = time
         config["server_addr"] = server_url
         json.dump(config,open("config.json", "w"))

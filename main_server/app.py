@@ -10,6 +10,8 @@ import os
 import json
 import database_manager
 import hanashi
+import numpy as np
+import time
 from gevent.pywsgi import WSGIServer
 
 #----------------------------------------------------------------------------#
@@ -33,10 +35,9 @@ def home():
     POST: Receives info from children.
     """
     if request.method == "GET":
-        children = database_manager.fetch_children()
-        recent_data = database_manager.fetch_recent_data()
         database_manager.get_exsiting_batch()
-        return render_template('pages/home.html', children=children, recent_data=recent_data)
+        data = hanashi.get_home_data()
+        return render_template('pages/home.html', children=data["children"], recent_data=data["recent_data"], graph=data["graph"])
     elif request.method == "POST":
         data = request.json
         database_manager.update_assignment(fitness=data["fitness"], request_id=data["request_id"])
@@ -49,6 +50,13 @@ def assignments():
         database_manager.get_exsiting_batch()
         assignments = database_manager.fetch_assignments()
         return render_template('pages/assignments.html', assignments=assignments)
+    elif request.method == "POST":
+        """
+        Manually add new data.
+        """
+        data = request.json["matrix"] #list of lists
+        hanashi.create_new_batch(np.array(data))
+        return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
 
 @app.route('/push', methods=['GET', 'POST'])
 def push():
@@ -72,10 +80,6 @@ if not app.debug:
 #----------------------------------------------------------------------------#
 # Launch.
 #----------------------------------------------------------------------------#
-
-# # Default port:
-# if __name__ == '__main__':
-#     app.run()
 
 
 if __name__ == '__main__':

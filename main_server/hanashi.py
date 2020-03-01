@@ -4,7 +4,10 @@ import numpy as np
 import database_manager
 import grequests
 import os
+import time
 import logging
+import plotly.graph_objs as go
+from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 logging.basicConfig(filename="hanashi.log", level=logging.DEBUG)
 
 """
@@ -28,7 +31,7 @@ def ping_to_children():
 def create_new_batch(X):
     """
     X: numpy.array
-        Chomossome population matrix where lines are chromossomes.
+        Chromossome population matrix where lines are chromossomes.
     """
     online_devices = ping_to_children()
     splits = np.array_split(X,len(online_devices))
@@ -76,6 +79,14 @@ def step():
     logging.info(notification)
     return notification
 
+def get_home_data():
+    data = database_manager.get_home_data()
+    #plot
+    y = data["graph"]
+    fig = go.Figure(data=go.Scatter(y=y))
+    fig.update_layout(template="plotly_dark")
+    data["graph"] = plot(fig,include_plotlyjs=False, output_type='div')
+    return data
 
 if __name__=="__main__":
     a = np.random.randint(0,10,(5,3))

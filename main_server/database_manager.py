@@ -1,5 +1,6 @@
 import sqlite3
 import json
+import time
 import logging
 logging.basicConfig(filename="database.log", level=logging.DEBUG)
 
@@ -63,6 +64,10 @@ def fetch_children(cursor,limit=5):
     children = cursor.execute(f"select * from children limit {limit};").fetchall()
     return children
 
+def fetch_children_no_dec(cursor,limit=5):
+    children = cursor.execute(f"select * from children limit {limit};").fetchall()
+    return children
+
 @db(database=config["database_path"])
 def fetch_all_children(cursor):
     children = cursor.execute(f"select * from children;").fetchall()
@@ -70,6 +75,10 @@ def fetch_all_children(cursor):
 
 @db(database=config["database_path"])
 def fetch_recent_data(cursor, limit=5):
+    recent_data = cursor.execute(f"select * from bio order by timestamp desc limit {5};").fetchall()
+    return recent_data
+
+def fetch_recent_data_no_dec(cursor, limit=5):
     recent_data = cursor.execute(f"select * from bio order by timestamp desc limit {5};").fetchall()
     return recent_data
 
@@ -115,6 +124,26 @@ def create_assignments(cursor,iterable,batch_id):
 @db(database=config["database_path"])
 def update_assignment(cursor,fitness,request_id):
     cursor.execute(f"update assignment set status=1, fitness={fitness} where request_id={request_id};")
+
+def get_fitness_graph(cursor,limit=100):
+    """
+    returns maximum for each batch_id
+    """
+    y = cursor.execute("select max(fitness) from bio group by batch_id limit ?", (limit,)).fetchall()
+    y = list(map(lambda x: x[0], y))
+    return y
+
+@db(database=config["database_path"])
+def get_home_data(cursor):
+    """
+    returns all data for the homepage
+    """
+    data = {}
+    data["graph"] = get_fitness_graph(cursor)
+    data["children"] = fetch_children_no_dec(cursor)
+    data["recent_data"] = fetch_recent_data_no_dec(cursor)
+    return data
+
 
 if __name__=="__main__":
     initialize_tables(config["database_path"])
