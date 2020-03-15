@@ -6,6 +6,7 @@ from flask import Flask, render_template, request, jsonify, send_from_directory,
 import logging
 # import listener
 from logging import Formatter, FileHandler
+logging.basicConfig(filename="server.log", level=logging.DEBUG)
 import os
 import json
 import database_manager
@@ -13,6 +14,7 @@ import hanashi
 import numpy as np
 import time
 from gevent.pywsgi import WSGIServer
+import memcache
 
 #----------------------------------------------------------------------------#
 # App Config.
@@ -27,7 +29,7 @@ config = json.load(open('config.json'))
 # Controllers.
 #----------------------------------------------------------------------------#
 
-
+shared_memory = memcache.Client(['localhost'])
 @app.route('/', methods=['GET', 'POST'])
 def home():
     """
@@ -41,7 +43,12 @@ def home():
     elif request.method == "POST":
         data = request.json
         database_manager.update_assignment(fitness=data["fitness"], request_id=data["request_id"])
-        database_manager.get_exsiting_batch()
+        r = database_manager.get_exsiting_batch()
+        if len(r)==0:
+            #Updating status on cached memory
+            set_response = shared_memory.set('batch_done', True)
+            if set_response==0:
+                logging.warn('set_response error')
         return "ok", 200
 
 @app.route('/assignments', methods=['GET', 'POST'])

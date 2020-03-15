@@ -78,6 +78,11 @@ def fetch_recent_data(cursor, limit=5):
     recent_data = cursor.execute(f"select * from bio order by timestamp desc limit {5};").fetchall()
     return recent_data
 
+@db(database=config["database_path"])
+def fitness_from_batch_id(cursor, id):
+    fitness = cursor.execute("select fitness from bio where batch_id=? order by timestamp asc;", (id,)).fetchall()
+    return fitness
+
 def fetch_recent_data_no_dec(cursor, limit=5):
     recent_data = cursor.execute(f"select * from bio order by timestamp desc limit {5};").fetchall()
     return recent_data

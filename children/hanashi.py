@@ -6,6 +6,7 @@ import grequests
 import os
 import logging
 import asyncio
+import random
 import requests
 import time as time_
 logging.basicConfig(filename="hanashi.log", level=logging.DEBUG)
@@ -90,7 +91,7 @@ async def set(data):
     #Set value to experiment
     time_.sleep(time)
     #Get value from experiment
-    f = 0
+    f = random.random()
     database_manager.update_assignment(f,request_id)
 
     #Posting back to main server
@@ -115,7 +116,7 @@ def static_set(assignment_tuple):
     #Set value to experiment
     time_.sleep(time)
     #Get value from experiment
-    f = 0
+    f = random.random()
     database_manager.update_assignment(f,request_id)
 
 

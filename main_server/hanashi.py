@@ -28,6 +28,12 @@ def ping_to_children():
     online = dict(filter(lambda x: x[1]!=None and x[1].ok,zip(id_children,to_ping)))
     return online
 
+def get_from_id(id):
+    """
+    Returns processed fitness in ascending order
+    """
+    return database_manager.fitness_from_batch_id(id)
+
 def create_new_batch(X):
     """
     X: numpy.array
@@ -38,7 +44,7 @@ def create_new_batch(X):
     #Creating assignment
     batch_id = database_manager.get_new_batch_id()
     database_manager.create_assignments(zip(online_devices.keys(), splits),batch_id)
-    return database_manager.get_exsiting_batch()
+    return {'batch': database_manager.get_exsiting_batch(), 'id':batch_id}
 
 
 def check_exsiting_batch():
