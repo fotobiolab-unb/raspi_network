@@ -134,8 +134,8 @@ def get_fitness_graph(cursor,limit=100):
     """
     returns maximum for each batch_id
     """
-    y = cursor.execute("select max(fitness) from bio group by batch_id limit ?", (limit,)).fetchall()
-    y = list(map(lambda x: x[0], y))
+    y = cursor.execute("select max(fitness) from bio group by batch_id order by batch_id desc limit ?", (limit,)).fetchall()
+    y = list(map(lambda x: x[0], y))[::-1]
     return y
 
 @db(database=config["database_path"])
