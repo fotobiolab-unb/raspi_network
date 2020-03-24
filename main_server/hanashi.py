@@ -28,6 +28,11 @@ def ping_to_children():
     online = dict(filter(lambda x: x[1]!=None and x[1].ok,zip(id_children,to_ping)))
     return online
 
+def get_available_servers():
+    online = ping_to_children()
+    online = list(filter(lambda x: online[x].ok,online.keys()))
+    return database_manager.fetch_children_subset(online)
+
 def get_from_id(id):
     """
     Returns processed fitness in ascending order
@@ -93,6 +98,20 @@ def get_home_data():
     fig.update_layout(template="plotly_dark")
     data["graph"] = plot(fig,include_plotlyjs=False, output_type='div')
     return data
+
+def get_genome_graph():
+    data = database_manager.get_genome_graph(database_manager.get_best_individual()[0])
+    data = np.array(data).T
+    fig = go.Figure()
+    for row in data:
+        fig.add_trace(go.Scatter(
+            y=row,
+            hoverinfo='x+y',
+            mode='lines',
+            stackgroup='main'
+        ))
+    fig.update_layout(template="plotly_dark")
+    return plot(fig,include_plotlyjs=False, output_type='div')
 
 if __name__=="__main__":
     a = np.random.randint(0,10,(5,3))

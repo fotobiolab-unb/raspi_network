@@ -39,7 +39,9 @@ def home():
     if request.method == "GET":
         database_manager.get_exsiting_batch()
         data = hanashi.get_home_data()
-        return render_template('pages/home.html', children=data["children"], recent_data=data["recent_data"], graph=data["graph"])
+        online = hanashi.get_available_servers()
+        genome_graph = hanashi.get_genome_graph()
+        return render_template('pages/home.html', children=list(online), graph=data["graph"], genome=genome_graph)
     elif request.method == "POST":
         data = request.json
         database_manager.update_assignment(fitness=data["fitness"], request_id=data["request_id"])

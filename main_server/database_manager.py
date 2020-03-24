@@ -2,6 +2,7 @@ import sqlite3
 import json
 import time
 import logging
+import numpy as np
 logging.basicConfig(filename="database.log", level=logging.DEBUG)
 
 config = json.load(open("config.json"))
@@ -59,13 +60,18 @@ def add_new_child(cursor,IP,name,url):
     cursor.execute("insert into children(IP,name,url) values (?, ?, ?);", (IP, name, url))
     logging.info(f"\tAdding IP {IP} in table children.")
 
-@db(database=config["database_path"])
+@db(database=config["database_path"], commit=False)
 def fetch_children(cursor,limit=5):
     children = cursor.execute(f"select * from children limit {limit};").fetchall()
     return children
 
 def fetch_children_no_dec(cursor,limit=5):
     children = cursor.execute(f"select * from children limit {limit};").fetchall()
+    return children
+
+@db(database=config["database_path"], commit=False)
+def fetch_children_subset(cursor,id=[]):
+    children = cursor.execute(f"select * from children where id in ({','.join(['?']*len(id))});", tuple(id)).fetchall()
     return children
 
 @db(database=config["database_path"])
@@ -145,10 +151,20 @@ def get_home_data(cursor):
     """
     data = {}
     data["graph"] = get_fitness_graph(cursor)
-    data["children"] = fetch_children_no_dec(cursor)
-    data["recent_data"] = fetch_recent_data_no_dec(cursor)
     return data
 
+@db(database=config["database_path"], commit=False)
+def get_genome_graph(cursor, id, limit=10):
+    data = cursor.execute("select chromossome_data from bio where id=? order by batch_id desc limit ?", (id,limit)).fetchall()
+    data = [eval(x[0]) for x in data]
+    L = len(data[0])
+    data = list(filter(lambda x: len(x)==L, data))
+    return data
+
+@db(database=config["database_path"], commit=False)
+def get_best_individual(cursor, n=1):
+    q = cursor.execute("select id, max(fitness) from bio group by id order by fitness desc").fetchmany(n)
+    return [x[0] for x in q]
 
 if __name__=="__main__":
     initialize_tables(config["database_path"])

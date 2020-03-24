@@ -51,11 +51,18 @@ def home():
         #updating constants
         server_url = batch["server_addr"]
         time = batch["time"]
-        config = json.load(open("config.json"))
-        #updating config in case it changes on the main server
-        config["time"] = time
-        config["server_addr"] = server_url
-        json.dump(config,open("config.json", "w"))
+        try:
+            """
+            Trying to update config from main_server.
+            Otherwise, use old configuration.
+            """
+            config = json.load(open("config.json"))
+            #updating config in case it changes on the main server
+            config["time"] = time
+            config["server_addr"] = server_url
+            json.dump(config,open("config.json", "w"))
+        except:
+            pass
         #-----------------
         database_manager.create_assignment(id,data,batch_id,request_id)
         p = Process(target=sync())
@@ -105,5 +112,13 @@ if not app.debug:
 
 
 if __name__ == '__main__':
-    http_server = WSGIServer(('', 2001), app)
-    http_server.serve_forever()
+    def serve_forever(s):
+        s.serve_forever()
+    virt = json.load(open('virtual_server_config.json'))
+    if virt["run_virtual"]:
+        servers = [WSGIServer(('', port), app) for port in virt["ports"]]
+        for server in servers:
+            Process(target=serve_forever, args=(server,)).start()
+    else:
+        http_server = WSGIServer(('', 2001), app)
+        http_server.serve_forever()

@@ -42,6 +42,7 @@ def fitness(X_cube, mode="volume", high=None, low=None, E=1):
         wait(lambda : shared_memory.get('batch_done'))
         id = batch["id"]
         y = np.matrix(hanashi.get_from_id(id))
+        print("Y", y)
         return np.array(y).ravel()
 
 mask = np.array([[0.,1.] for i in range(4)])

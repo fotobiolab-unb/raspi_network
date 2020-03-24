@@ -13,7 +13,7 @@
   <div class="row">
     <div class="column" id="children">
       <table>
-        <tr><td>Children</td></tr>
+        <tr><td>Online</td></tr>
         {% for result in children %}
           <tr>
             {% for field in result %}
@@ -25,17 +25,8 @@
     </div>
   </div>
   <div class="row">
-    <div class="column" id="data">
-      <table>
-        <tr><td>Recent Data</td></tr>
-        {% for result in recent_data %}
-          <tr>
-            {% for field in result %}
-              <td>{{field}}</td>
-            {% endfor %}
-          </tr>
-        {% endfor %}
-      </table>
+    <div class="column">
+      {{genome|safe}}
     </div>
   </div>
 </div>
