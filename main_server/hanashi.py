@@ -8,6 +8,7 @@ import time
 import logging
 import plotly.graph_objs as go
 from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
+from plotly.subplots import make_subplots
 logging.basicConfig(filename="hanashi.log", level=logging.DEBUG)
 
 """
@@ -100,17 +101,25 @@ def get_home_data():
     return data
 
 def get_genome_graph():
-    data = database_manager.get_genome_graph(database_manager.get_best_individual()[0])
-    data = np.array(data).T
+    n = 3
+    I = database_manager.get_best_individual(n)
     fig = go.Figure()
-    for row in data:
-        fig.add_trace(go.Scatter(
-            y=row,
-            hoverinfo='x+y',
-            mode='lines',
-            stackgroup='main'
-        ))
-    fig.update_layout(template="plotly_dark")
+    titles = []
+    for j in I[:n]:
+        titles.append(f"R{j}")
+    fig = make_subplots(rows=1, cols=n, subplot_titles=titles)
+    for i,j in enumerate(I[:n]):
+        data = database_manager.get_genome_graph(j)
+        data = np.array(data).T
+        for row in data:
+            fig.add_trace(go.Scatter(
+                y=row,
+                hoverinfo='x+y',
+                mode='lines',
+                stackgroup='main'+str(i)
+            ),
+            row=1,col=i+1)
+        fig.update_layout(template="plotly_dark", showlegend=False)
     return plot(fig,include_plotlyjs=False, output_type='div')
 
 if __name__=="__main__":
