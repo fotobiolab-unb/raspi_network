@@ -6,13 +6,13 @@ logging.basicConfig(filename="database.log", level=logging.DEBUG)
 
 config = json.load(open("config.json"))
 
-def db(database):
+def db(database, commit=True):
     def decorator(func):
         def inner(*args, **kwargs):
             connection = sqlite3.connect(database)
             cursor = connection.cursor()
             R = func(cursor,*args,**kwargs)
-            connection.commit()
+            connection.commit() if commit else 0
             connection.close()
             return R
         return inner
@@ -138,7 +138,7 @@ def get_fitness_graph(cursor,limit=100):
     y = list(map(lambda x: x[0], y))[::-1]
     return y
 
-@db(database=config["database_path"])
+@db(database=config["database_path"], commit=False)
 def get_home_data(cursor):
     """
     returns all data for the homepage
