@@ -15,6 +15,7 @@ import numpy as np
 import time
 from gevent.pywsgi import WSGIServer
 import memcache
+import time
 
 #----------------------------------------------------------------------------#
 # App Config.
@@ -38,9 +39,9 @@ def home():
     """
     if request.method == "GET":
         database_manager.get_exsiting_batch()
-        data = hanashi.get_home_data()
+        data = hanashi.get_home_data()#
         online = hanashi.get_available_servers()
-        genome_graph = hanashi.get_genome_graph()
+        genome_graph = hanashi.get_genome_graph()#
         return render_template('pages/home.html', children=list(online), graph=data["graph"], genome=genome_graph)
     elif request.method == "POST":
         data = request.json

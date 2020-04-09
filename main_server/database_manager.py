@@ -105,7 +105,7 @@ def get_new_batch_id(cursor):
     logging.info(f"\tNew batch started with id {batch_id}")
     return batch_id
 
-@db(database=config["database_path"])
+@db(database=config["database_path"], commit=False)
 def get_exsiting_batch(cursor):
     batch_id = cursor.execute("select batch_id from assignment order by batch_id desc limit 1;").fetchone()
     batch_id = batch_id[0] if batch_id else False
