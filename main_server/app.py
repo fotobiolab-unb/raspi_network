@@ -39,10 +39,11 @@ def home():
     """
     if request.method == "GET":
         database_manager.get_exsiting_batch()
-        data = hanashi.get_home_data()#
+        #data = hanashi.get_home_data()#
+        data = database_manager.get_home_data()
         online = hanashi.get_available_servers()
-        genome_graph = hanashi.get_genome_graph()#
-        return render_template('pages/home.html', children=list(online), graph=data["graph"], genome=genome_graph)
+        genome_names, genome_graph = hanashi.get_best_genome_data()
+        return render_template('pages/home.html', children=list(online), graph=data["graph"], genome_name=genome_names, genome_graph=genome_graph)
     elif request.method == "POST":
         data = request.json
         database_manager.update_assignment(fitness=data["fitness"], request_id=data["request_id"])

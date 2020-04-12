@@ -6,9 +6,6 @@ import grequests
 import os
 import time
 import logging
-import plotly.graph_objs as go
-from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
-from plotly.subplots import make_subplots
 logging.basicConfig(filename="hanashi.log", level=logging.DEBUG)
 
 """
@@ -91,36 +88,16 @@ def step():
     logging.info(notification)
     return notification
 
-def get_home_data():
-    data = database_manager.get_home_data()
-    #plot
-    y = data["graph"]
-    fig = go.Figure(data=go.Scatter(y=y))
-    fig.update_layout(template="plotly_dark")
-    data["graph"] = plot(fig,include_plotlyjs=False, output_type='div')
-    return data
-
-def get_genome_graph():
-    n = 3
-    I = database_manager.get_best_individual(n)
-    fig = go.Figure()
-    titles = []
-    for j in I[:n]:
-        titles.append(f"R{j}")
-    fig = make_subplots(rows=1, cols=n, subplot_titles=titles)
-    for i,j in enumerate(I[:n]):
-        data = database_manager.get_genome_graph(j)
-        data = np.array(data).T
-        for row in data:
-            fig.add_trace(go.Scatter(
-                y=row,
-                hoverinfo='x+y',
-                mode='lines',
-                stackgroup='main'+str(i)
-            ),
-            row=1,col=i+1)
-        fig.update_layout(template="plotly_dark", showlegend=False)
-    return plot(fig,include_plotlyjs=False, output_type='div')
+def get_best_genome_data(n=3):
+    """
+    Creates a set of stacked graphs.
+    """
+    genome_graph_names = database_manager.get_best_individual(n)
+    raw = np.array([database_manager.get_genome_graph(x) for x in genome_graph_names])
+    genome_graph = np.array([[raw[j,:,:i].sum(axis=1) for i in range(1,len(raw[0][0])+1)] for j in range(len(raw))]).tolist()
+    print(np.array(genome_graph))
+    genome_graph_names = ["R"+str(x) for x in genome_graph_names]
+    return genome_graph_names, genome_graph
 
 if __name__=="__main__":
     a = np.random.randint(0,10,(5,3))
