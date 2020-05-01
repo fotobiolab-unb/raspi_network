@@ -9,6 +9,7 @@ import asyncio
 import random
 import requests
 import time as time_
+from experiment import f
 logging.basicConfig(filename="hanashi.log", level=logging.DEBUG)
 
 """
@@ -77,6 +78,7 @@ def step():
 
 async def set(data):
     """
+    DEPRECATED
     Set to experiment.
     When done, sends a request back to the main server.
     """
@@ -116,8 +118,8 @@ def static_set(assignment_tuple):
     #Set value to experiment
     time_.sleep(time)
     #Get value from experiment
-    f = random.random()
-    database_manager.update_assignment(f,request_id)
+    y = f(chromossome)
+    database_manager.update_assignment(random.random(),request_id)
 
 
 

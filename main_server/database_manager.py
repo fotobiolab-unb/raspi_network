@@ -105,7 +105,7 @@ def get_new_batch_id(cursor):
     logging.info(f"\tNew batch started with id {batch_id}")
     return batch_id
 
-@db(database=config["database_path"], commit=False)
+@db(database=config["database_path"], commit=True)
 def get_exsiting_batch(cursor):
     batch_id = cursor.execute("select batch_id from assignment order by batch_id desc limit 1;").fetchone()
     batch_id = batch_id[0] if batch_id else False
@@ -115,11 +115,11 @@ def get_exsiting_batch(cursor):
                                 join children on assignment.id=children.id
                                 where batch_id=? and status=0""", (batch_id,)).fetchall()
         if len(data)==0:
-            print("All done")
             """If this is empty, then all assignments are done. Move them to history."""
             cursor.execute(f"""insert into bio(id, batch_id, chromossome_data, fitness)
                             select id, batch_id, chromossome_data, fitness from assignment where assignment.batch_id=?;""", (batch_id,))
             cursor.execute(f"""delete from assignment where batch_id=?;""", (batch_id,))
+            print("All done")
     return data
 
 @db(database=config["database_path"])

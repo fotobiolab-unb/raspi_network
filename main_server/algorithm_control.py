@@ -34,7 +34,6 @@ def fitness(X_cube, mode="volume", high=None, low=None, E=1):
             u = E - X.sum(axis=1)
             u = u.reshape((u.shape[0], 1))
             X = np.hstack([u,X])
-        print(X.sum(axis=1))
         print("X", X)
         shared_memory.set('batch_done', False)
         batch = hanashi.create_new_batch(X)
@@ -43,6 +42,7 @@ def fitness(X_cube, mode="volume", high=None, low=None, E=1):
         id = batch["id"]
         y = np.matrix(hanashi.get_from_id(id))
         print("Y", y)
+        print("id", id)
         return np.array(y).ravel()
 
 mask = np.array([[0.,1.] for i in range(4)])
@@ -59,7 +59,7 @@ def evolve(mode, *args, **kwargs):
             range_mask=mask,
             has_mask=True,
             time_print=.5,
-            logging=True
+            logging=False
             )
     ga.G[0]=np.zeros(ga.G[0].shape)
     ga.run()
