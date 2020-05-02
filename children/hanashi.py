@@ -119,7 +119,7 @@ def static_set(assignment_tuple):
     time_.sleep(time)
     #Get value from experiment
     y = f(chromossome)
-    database_manager.update_assignment(random.random(),request_id)
+    database_manager.update_assignment(y,request_id)
 
 
 

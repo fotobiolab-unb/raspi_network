@@ -3,10 +3,13 @@ function make_graph(data,id,cmap,fill_area=true){
   var w = d3.select(id).node().offsetWidth - m[1] - m[3]; // width
   var h = 400 - m[0] - m[2]; // height
 
-  // X scale will fit all values from data[] within pixels 0-w
   var x = d3.scaleLinear().domain([0, data[0].length]).range([0, w]);
-  // Y scale will fit values from 0-10 within pixels h-0 (Note the inverted domain for the y-scale: bigger is up!)
-  var y = d3.scaleLinear().domain([0, 1.2*Math.max(...data[0])]).range([h, 0]);
+  var max_y = Array(data.length)
+  for (var i=0; i<data.length; i++){
+    max_y[i] = Math.max(...data[i])
+  }
+  console.log(max_y)
+  var y = d3.scaleLinear().domain([0, 1.2*Math.max(...max_y)]).range([h, 0]);
 
   var line = d3.line()
     .x(function(d,i) {
@@ -74,7 +77,6 @@ function make_graph(data,id,cmap,fill_area=true){
             .style("stroke", cmap[i]);
 
       if(fill_area){
-        console.log(stacked[i])
         graph.append("path")
               .datum(stacked[i])
               .attr("class", "area")

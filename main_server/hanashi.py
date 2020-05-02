@@ -31,11 +31,11 @@ def get_available_servers():
     online = list(filter(lambda x: online[x].ok,online.keys()))
     return database_manager.fetch_children_subset(online)
 
-def get_from_id(id):
+def get_from_id(id,**kwargs):
     """
     Returns processed fitness in ascending order
     """
-    return database_manager.fitness_from_batch_id(id)
+    return database_manager.fitness_from_batch_id(id, **kwargs)
 
 def create_new_batch(X):
     """
@@ -86,7 +86,7 @@ def step():
     success = list(filter(lambda x: x!=None and x.ok,gmap))
     notification = f"Executed batch post, {len(success)} out of {len(requests)} returned 200."
     logging.info(notification)
-    return notification
+    return unresolved
 
 def get_best_genome_data(n=3):
     """
@@ -94,8 +94,12 @@ def get_best_genome_data(n=3):
     """
     genome_graph_names = database_manager.get_best_individual(n)
     raw = np.array([database_manager.get_genome_graph(x) for x in genome_graph_names])
-    genome_graph = np.array([[raw[j,:,:i].sum(axis=1) for i in range(1,len(raw[0][0])+1)] for j in range(len(raw))]).tolist()
-    print(np.array(genome_graph))
+    genome_graph = np.array([[raw[j,:,:i].sum(axis=1) for i in range(1,len(raw[0][0])+1)] for j in range(len(raw))])
+    # maximum, minimum = genome_graph.max(axis=1), genome_graph.min(axis=1)
+    # maximum = np.repeat(maximum[:,np.newaxis,:],genome_graph.shape[1],axis=1)
+    # minimum = np.repeat(minimum[:,np.newaxis,:],genome_graph.shape[1],axis=1)
+    # genome_graph = (genome_graph-minimum)/(maximum-minimum) if (maximum-minimum).sum()!=0 else genome_graph
+    genome_graph = genome_graph.tolist()
     genome_graph_names = ["R"+str(x) for x in genome_graph_names]
     return genome_graph_names, genome_graph
 

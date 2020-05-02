@@ -32,6 +32,7 @@ def initialize_tables(filename):
                                                     timestamp datetime default current_timestamp,\
                                                     chromossome_data text,\
                                                     fitness real,\
+                                                    request_id,\
                                                     foreign key(id) references children(id));")
     cursor.execute("create table if not exists assignment (id integer,\
                                                            batch_id integer,\
@@ -85,9 +86,13 @@ def fetch_recent_data(cursor, limit=5):
     return recent_data
 
 @db(database=config["database_path"])
-def fitness_from_batch_id(cursor, id):
-    fitness = cursor.execute("select fitness from bio where batch_id=? order by timestamp asc;", (id,)).fetchall()
-    return fitness
+def fitness_from_batch_id(cursor, id, return_request_id=False):
+    if not return_request_id:
+        fitness = cursor.execute("select fitness from bio where batch_id=? order by timestamp asc;", (id,)).fetchall()
+        return fitness
+    else:
+        fitness = cursor.execute("select fitness, request_id from bio where batch_id=? order by timestamp asc;", (id,)).fetchall()
+        return fitness
 
 def fetch_recent_data_no_dec(cursor, limit=5):
     recent_data = cursor.execute(f"select * from bio order by timestamp desc limit {5};").fetchall()
@@ -98,7 +103,7 @@ def fetch_assignments(cursor, limit=5):
     recent_data = cursor.execute(f"select * from assignment order by batch_id desc;").fetchall()
     return recent_data
 
-@db(database=config["database_path"])
+@db(database=config["database_path"], commit=False)
 def get_new_batch_id(cursor):
     batch_id = cursor.execute("select batch_id from bio order by batch_id desc limit 1;").fetchone()
     batch_id = batch_id[0]+1 if batch_id else 1 #Do not set to zero
@@ -116,8 +121,8 @@ def get_exsiting_batch(cursor):
                                 where batch_id=? and status=0""", (batch_id,)).fetchall()
         if len(data)==0:
             """If this is empty, then all assignments are done. Move them to history."""
-            cursor.execute(f"""insert into bio(id, batch_id, chromossome_data, fitness)
-                            select id, batch_id, chromossome_data, fitness from assignment where assignment.batch_id=?;""", (batch_id,))
+            cursor.execute(f"""insert into bio(id, batch_id, chromossome_data, fitness, request_id)
+                            select id, batch_id, chromossome_data, fitness, request_id from assignment where assignment.batch_id=?;""", (batch_id,))
             cursor.execute(f"""delete from assignment where batch_id=?;""", (batch_id,))
             print("All done")
     return data

@@ -16,6 +16,7 @@ from waiting import wait
 import logging
 logging.basicConfig(filename="ga.log", level=logging.DEBUG)
 shared_memory = memcache.Client(['localhost'])
+np.set_printoptions(precision=3)
 
 def fitness(X_cube, mode="volume", high=None, low=None, E=1):
         """
@@ -34,18 +35,18 @@ def fitness(X_cube, mode="volume", high=None, low=None, E=1):
             u = E - X.sum(axis=1)
             u = u.reshape((u.shape[0], 1))
             X = np.hstack([u,X])
-        print("X", X)
+        print(X)
         shared_memory.set('batch_done', False)
         batch = hanashi.create_new_batch(X)
-        hanashi.step()
+        R = hanashi.step()
         wait(lambda : shared_memory.get('batch_done'))
         id = batch["id"]
-        y = np.matrix(hanashi.get_from_id(id))
-        print("Y", y)
-        print("id", id)
+        Y = hanashi.get_from_id(id, return_request_id=True)
+        Y = {u[1]:u[0] for u in Y}
+        y = [Y[k] for k in np.array(R)[:,2].astype(int)]
         return np.array(y).ravel()
 
-mask = np.array([[0.,1.] for i in range(4)])
+mask = np.array([[0,1.] for i in range(4)])
 #mask = np.array([[-10.,10.] for i in range(4)])
 def evolve(mode, *args, **kwargs):
     ga = GA(
@@ -59,7 +60,8 @@ def evolve(mode, *args, **kwargs):
             range_mask=mask,
             has_mask=True,
             time_print=.5,
-            logging=False
+            logging=True,
+            maximize=True
             )
     ga.G[0]=np.zeros(ga.G[0].shape)
     ga.run()
@@ -67,4 +69,4 @@ def evolve(mode, *args, **kwargs):
 if __name__=="__main__":
     # X = np.random.random_sample((4,3))
     # print(fitness(X))
-    evolve(mode="surface")
+    evolve(mode="volume")
