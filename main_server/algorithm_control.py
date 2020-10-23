@@ -9,6 +9,7 @@ import hanashi
 config = json.load(open("config.json"))
 sys.path.append(config["gapy_path"])
 from gapy import GA
+from gapy2 import GA as GA2
 from tools import hypercube_to_simplex
 import numpy as np
 import memcache
@@ -66,7 +67,20 @@ def evolve(mode, *args, **kwargs):
     ga.G[0]=np.zeros(ga.G[0].shape)
     ga.run()
 
+def evolve2(mode, *args, **kwargs):
+    ga = GA2(
+        population_size = 8,
+        mutation_probability = 0.2,
+        generations = 10,
+        resolution = 8,
+        ranges = mask,
+        elitism = 1
+    )
+    ga.f = lambda x: fitness(x, mode)
+    ga.run()
+
 if __name__=="__main__":
     # X = np.random.random_sample((4,3))
     # print(fitness(X))
-    evolve(mode="volume")
+    #evolve(mode="surface")
+    evolve2(mode="surface")
