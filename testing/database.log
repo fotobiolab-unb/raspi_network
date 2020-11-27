@@ -1,0 +1,214 @@
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "GET / HTTP/1.1" 200 2
+INFO:root:	New batch started with id 1
+INFO:root:Sending packet: [{'id': 1, 'batch_id': 1, 'request_id': 881, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}]
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 500 21
+INFO:root:Executed batch post, 0 out of 1 returned 200.
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "GET / HTTP/1.1" 200 2
+INFO:root:	New batch started with id 1
+INFO:root:Sending packet: [{'id': 1, 'batch_id': 1, 'request_id': 881, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 882, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}]
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 500 21
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 500 21
+INFO:root:Executed batch post, 0 out of 2 returned 200.
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "GET / HTTP/1.1" 200 2
+INFO:root:	New batch started with id 1
+INFO:root:Sending packet: [{'id': 1, 'batch_id': 1, 'request_id': 881, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 882, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 883, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}]
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 500 21
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 500 21
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 500 21
+INFO:root:Executed batch post, 0 out of 3 returned 200.
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "GET / HTTP/1.1" 200 2
+INFO:root:	New batch started with id 1
+INFO:root:Sending packet: [{'id': 1, 'batch_id': 1, 'request_id': 881, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 882, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 883, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 884, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}]
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 500 21
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 500 21
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 500 21
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 500 21
+INFO:root:Executed batch post, 0 out of 4 returned 200.
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "GET / HTTP/1.1" 200 2
+INFO:root:	New batch started with id 1
+INFO:root:Sending packet: [{'id': 1, 'batch_id': 1, 'request_id': 881, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 882, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 883, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 884, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 885, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}]
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 500 21
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 500 21
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 500 21
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 500 21
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 500 21
+INFO:root:Executed batch post, 0 out of 5 returned 200.
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "GET / HTTP/1.1" 200 2
+INFO:root:	New batch started with id 1
+INFO:root:Sending packet: [{'id': 1, 'batch_id': 1, 'request_id': 881, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 882, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 883, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 884, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 885, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 886, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}]
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+INFO:root:Executed batch post, 6 out of 6 returned 200.
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "GET / HTTP/1.1" 200 2
+INFO:root:	New batch started with id 1
+INFO:root:Sending packet: [{'id': 1, 'batch_id': 1, 'request_id': 881, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 882, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 883, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 884, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 885, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 886, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 887, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}]
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+INFO:root:Executed batch post, 7 out of 7 returned 200.
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "GET / HTTP/1.1" 200 2
+INFO:root:	New batch started with id 1
+INFO:root:Sending packet: [{'id': 1, 'batch_id': 1, 'request_id': 881, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 882, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 883, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 884, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 885, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 886, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 887, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 888, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}]
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+INFO:root:Executed batch post, 8 out of 8 returned 200.
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "GET / HTTP/1.1" 200 2
+INFO:root:	New batch started with id 1
+INFO:root:Sending packet: [{'id': 1, 'batch_id': 1, 'request_id': 881, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 882, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 883, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 884, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 885, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 886, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 887, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 888, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 889, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}]
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+INFO:root:Executed batch post, 9 out of 9 returned 200.
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "GET / HTTP/1.1" 200 2
+INFO:root:	New batch started with id 1
+INFO:root:Sending packet: [{'id': 1, 'batch_id': 1, 'request_id': 890, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}]
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+INFO:root:Executed batch post, 1 out of 1 returned 200.
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "GET / HTTP/1.1" 200 2
+INFO:root:	New batch started with id 1
+INFO:root:Sending packet: [{'id': 1, 'batch_id': 1, 'request_id': 890, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 891, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}]
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+INFO:root:Executed batch post, 2 out of 2 returned 200.
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "GET / HTTP/1.1" 200 2
+INFO:root:	New batch started with id 1
+INFO:root:Sending packet: [{'id': 1, 'batch_id': 1, 'request_id': 890, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 891, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 892, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.1205894986628735, 0.16864609722217963, 0.22345696537421977, 0.21449470760634862, 0.1243734833966959, 0.08591385963742876, 0.09741981979538453, 0.17914965204757546, 0.49998206070958895, 0.21920764526918854]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}]
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+INFO:root:Executed batch post, 3 out of 3 returned 200.
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "GET / HTTP/1.1" 200 2
+INFO:root:	New batch started with id 1
+INFO:root:Sending packet: [{'id': 1, 'batch_id': 1, 'request_id': 890, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 891, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 892, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.1205894986628735, 0.16864609722217963, 0.22345696537421977, 0.21449470760634862, 0.1243734833966959, 0.08591385963742876, 0.09741981979538453, 0.17914965204757546, 0.49998206070958895, 0.21920764526918854]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 893, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.0241178997325747, 0.03372921944443593, 0.04469139307484396, 0.042898941521269725, 0.024874696679339184, 0.01718277192748575, 0.019483963959076908, 0.03582993040951509, 0.09999641214191779, 0.04384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}]
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+INFO:root:Executed batch post, 4 out of 4 returned 200.
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "GET / HTTP/1.1" 200 2
+INFO:root:	New batch started with id 1
+INFO:root:Sending packet: [{'id': 1, 'batch_id': 1, 'request_id': 890, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 891, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 892, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.1205894986628735, 0.16864609722217963, 0.22345696537421977, 0.21449470760634862, 0.1243734833966959, 0.08591385963742876, 0.09741981979538453, 0.17914965204757546, 0.49998206070958895, 0.21920764526918854]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 893, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.0241178997325747, 0.03372921944443593, 0.04469139307484396, 0.042898941521269725, 0.024874696679339184, 0.01718277192748575, 0.019483963959076908, 0.03582993040951509, 0.09999641214191779, 0.04384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 894, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.0241178997325747, 0.03372921944443593, 0.04469139307484396, 0.042898941521269725, 0.024874696679339184, 0.01718277192748575, 0.019483963959076908, 0.03582993040951509, 0.09999641214191779, 0.04384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}]
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+INFO:root:Executed batch post, 5 out of 5 returned 200.
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "GET / HTTP/1.1" 200 2
+INFO:root:	New batch started with id 1
+INFO:root:Sending packet: [{'id': 1, 'batch_id': 1, 'request_id': 890, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 891, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.241178997325747, 0.33729219444435926, 0.44691393074843955, 0.42898941521269723, 0.2487469667933918, 0.17182771927485752, 0.19483963959076905, 0.35829930409515093, 0.9999641214191779, 0.4384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 892, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.1205894986628735, 0.16864609722217963, 0.22345696537421977, 0.21449470760634862, 0.1243734833966959, 0.08591385963742876, 0.09741981979538453, 0.17914965204757546, 0.49998206070958895, 0.21920764526918854]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 893, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.0241178997325747, 0.03372921944443593, 0.04469139307484396, 0.042898941521269725, 0.024874696679339184, 0.01718277192748575, 0.019483963959076908, 0.03582993040951509, 0.09999641214191779, 0.04384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 894, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.0241178997325747, 0.03372921944443593, 0.04469139307484396, 0.042898941521269725, 0.024874696679339184, 0.01718277192748575, 0.019483963959076908, 0.03582993040951509, 0.09999641214191779, 0.04384152905383771]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}, {'id': 1, 'batch_id': 1, 'request_id': 895, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.01205894986628735, 0.016864609722217965, 0.02234569653742198, 0.021449470760634862, 0.012437348339669592, 0.008591385963742875, 0.009741981979538454, 0.017914965204757546, 0.049998206070958895, 0.021920764526918855]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}]
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 200 2
+INFO:root:Executed batch post, 6 out of 6 returned 200.
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "GET / HTTP/1.1" 200 2
+INFO:root:	New batch started with id 1
+INFO:root:Sending packet: [{'id': 1, 'batch_id': 1, 'request_id': 896, 'fitness': 0.0, 'url': 'http://192.168.1.100:2001', 'IP': '192.168.1.100', 'chromossome_data': '[0.01205894986628735, 0.016864609722217965, 0.02234569653742198, 0.021449470760634862, 0.012437348339669592, 0.008591385963742875, 0.009741981979538454, 0.017914965204757546, 0.049998206070958895, 0.021920764526918855]', 'time': 1, 'server_addr': 'http://192.168.1.100:5000'}]
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.100
+DEBUG:urllib3.connectionpool:http://192.168.1.100:2001 "POST / HTTP/1.1" 500 21
+INFO:root:Executed batch post, 0 out of 1 returned 200.
