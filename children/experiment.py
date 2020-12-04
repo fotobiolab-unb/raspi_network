@@ -20,7 +20,7 @@ def f(X):
     Set spectra first then brightness
     """
     s = serial.Serial("/dev/ttyACM0",9600)
-    s.write("silent_connect\r\n".encode("ascii"))
+    s.write("manual_connect\r\n".encode("ascii"))
     s.write("set(brilho,100)\r\n".encode("ascii"))
     with open("../data/spectra/parameters.json") as f:
         param = json.load(f)

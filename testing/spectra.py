@@ -15,7 +15,7 @@ def uniform(alpha):
 
 def init(*params):
     s = serial.Serial(*params)
-    s.write("silent_connect\r\n".encode("ascii"))
+    s.write("manual_connect\r\n".encode("ascii"))
     return s
 
 def brilho(s,b):
