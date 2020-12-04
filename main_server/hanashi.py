@@ -2,10 +2,11 @@ import json
 import sqlite3
 import numpy as np
 import database_manager
-import grequests
+#import grequests
 import os
 import time
 import logging
+import requests
 logging.basicConfig(filename="hanashi.log", level=logging.DEBUG)
 
 """
@@ -22,7 +23,8 @@ def ping_to_children():
     """
     children = database_manager.fetch_all_children()
     id_children = list(map(lambda x: x[0], children))
-    to_ping = grequests.map([grequests.get(x[1]) for x in children])
+    #to_ping = grequests.map([grequests.get(x[1]) for x in children])
+    to_ping = [requests.get(x[1]) for x in children]
     online = dict(filter(lambda x: x[1]!=None and x[1].ok,zip(id_children,to_ping)))
     return online
 
@@ -77,9 +79,11 @@ def step():
         p_dict["time"] = config["time"]
         p_dict["server_addr"] = config["server_addr"]
         data.append(p_dict)
-    requests = [grequests.post(x["url"], json = x) for x in data]
+    #Requests = [grequests.post(x["url"], json = x) for x in data]
+    Requests = [requests.post(x["url"], json = x) for x in data]
     logging.info(f"Sending packet: {data}")
-    gmap = grequests.map(requests)
+    #gmap = grequests.map(requests)
+    gmap = Requests
     """
     The output will be another dictionary whose values will be used to update the database. The result is caught by a get in Flask.
     """

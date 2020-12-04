@@ -2,7 +2,7 @@ import json
 import sqlite3
 import numpy as np
 import database_manager
-import grequests
+#import grequests
 import os
 import logging
 import asyncio
@@ -26,7 +26,8 @@ def ping_to_children():
     """
     children = database_manager.fetch_all_children()
     id_children = list(map(lambda x: x[0], children))
-    to_ping = grequests.map([grequests.get(x[1]) for x in children])
+    #to_ping = grequests.map([grequests.get(x[1]) for x in children])
+    to_ping = [requests.get(x[1]) for x in children]
     online = dict(filter(lambda x: x[1]!=None and x[1].ok,zip(id_children,to_ping)))
     return online
 
@@ -65,8 +66,10 @@ def step():
     columns = ["id","batch_id","request_id","fitness","url","IP","chromossome_data"]
     data = dict(zip(columns,x))
     data["time"] = config["time"]
-    requests = [grequests.post(columns[4], data = data) for x in unresolved]
-    gmap = grequests.map(requests)
+    #requests = [grequests.post(columns[4], data = data) for x in unresolved]
+    Requests = [requests.post(columns[4], data = data) for x in unresolved]
+    #gmap = grequests.map(requests)
+    gmap = Requests
     """
     The output will be another dictionary whse values will be used to update the database. The result is caught by a get in Flask.
     """
