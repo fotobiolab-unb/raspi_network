@@ -19,7 +19,7 @@ def init(*params):
     return s
 
 def brilho(s,b):
-    s.write(f"set(brilho,{b})\r\n".encode("ascii"))
+    s.write("set(brilho,{})\r\n".format(str(b)).encode("ascii"))
 
 def set_uniform(s):
     with open("../data/spectra/parameters.json") as f:
@@ -27,7 +27,7 @@ def set_uniform(s):
         param = sorted(param.items(), key= lambda x: x[0])
         
         for p,x in zip(param, X):
-            string = f"set({p[0]},{int(100*x)})\r\n" 
+            string = "set({},{})\r\n".format(str(p[0]),str(int(100*x)))
             time.sleep(1)
             print(string)
             s.write(string.encode("ascii"))
