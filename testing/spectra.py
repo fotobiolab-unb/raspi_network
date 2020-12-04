@@ -19,7 +19,7 @@ def init(*params):
     return s
 
 def brilho(s,b):
-    s.write(f"set(brilho,{})\r\n".encode("ascii"))
+    s.write(f"set(brilho,{b})\r\n".encode("ascii"))
 
 def set_uniform(s):
     with open("../data/spectra/parameters.json") as f:
