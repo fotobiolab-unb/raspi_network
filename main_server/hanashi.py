@@ -24,7 +24,12 @@ def ping_to_children():
     children = database_manager.fetch_all_children()
     id_children = list(map(lambda x: x[0], children))
     #to_ping = grequests.map([grequests.get(x[1]) for x in children])
-    to_ping = [requests.get(x[1]) for x in children]
+    to_ping = []
+    for x in children:
+        try:
+            to_ping.append(requests.get[x[1]])
+        except:
+            to_ping.append(None)
     online = dict(filter(lambda x: x[1]!=None and x[1].ok,zip(id_children,to_ping)))
     return online
 
