@@ -4,6 +4,7 @@ import numpy as np
 import json
 import time
 import serial
+import hanashi
 
 def uniform(alpha):
     with open("../data/spectra/neutral_spectrum_components.json") as f:
