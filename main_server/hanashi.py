@@ -27,7 +27,7 @@ def ping_to_children():
     to_ping = []
     for x in children:
         try:
-            to_ping.append(requests.get[x[1]])
+            to_ping.append(requests.get(x[1]))
         except:
             to_ping.append(None)
     online = dict(filter(lambda x: x[1]!=None and x[1].ok,zip(id_children,to_ping)))
