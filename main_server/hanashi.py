@@ -93,7 +93,7 @@ def step():
     The output will be another dictionary whose values will be used to update the database. The result is caught by a get in Flask.
     """
     success = list(filter(lambda x: x!=None and x.ok,gmap))
-    notification = f"Executed batch post, {len(success)} out of {len(requests)} returned 200."
+    notification = f"Executed batch post, {len(success)} out of {len(Requests)} returned 200."
     logging.info(notification)
     return unresolved
 
