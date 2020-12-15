@@ -10,6 +10,7 @@ import random
 import requests
 import time as time_
 from experiment import f
+from sync import sync_send
 logging.basicConfig(filename="hanashi.log", level=logging.DEBUG)
 
 """
@@ -123,6 +124,7 @@ def static_set(assignment_tuple):
     #Get value from experiment
     y = f(chromossome)
     database_manager.update_assignment(y,request_id)
+    sync_send()
 
 
 

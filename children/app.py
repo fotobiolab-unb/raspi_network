@@ -64,7 +64,8 @@ def home():
         except:
             pass
         #-----------------
-        database_manager.create_assignment(id,data,batch_id,request_id)
+        if request_id != None:
+            database_manager.create_assignment(id,data,batch_id,request_id)
         #p = Process(target=sync())
         #p.start()
         hanashi.static_set((id,batch_id,request_id,0,data))

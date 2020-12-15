@@ -107,6 +107,21 @@ def get_best_genome_data(n=3):
     genome_graph_names = ["R"+str(x) for x in genome_graph_names]
     return genome_graph_names, genome_graph
 
+def shadow_send(chromossome, address, time):
+    """
+    Sends paramaters directly to target reactor without saving data to a queue.
+    """
+    packet = {
+        "id": None,
+        "chromossome_data": list(chromossome),
+        "batch_id": None,
+        "time": time,
+        "request_id": None,
+        "server_addr": config["server_addr"]
+        
+    }
+    requests.post(address, json=packet)
+
 if __name__=="__main__":
     a = np.random.randint(0,10,(5,3))
     print(a)
