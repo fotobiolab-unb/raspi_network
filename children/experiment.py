@@ -33,7 +33,10 @@ import time
 #             s.write(string.encode("ascii"))
 #     return 0
 
-def f(X):
+def f_set(X):
     print("Running Experiment")
     print(X)
+    return 0
+
+def f_read():
     return 0

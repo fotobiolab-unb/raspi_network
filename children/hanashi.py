@@ -9,7 +9,7 @@ import asyncio
 import random
 import requests
 import time as time_
-from experiment import f
+from experiment import f_set, f_read
 from sync import sync_send
 logging.basicConfig(filename="hanashi.log", level=logging.DEBUG)
 
@@ -120,9 +120,10 @@ def static_set(assignment_tuple):
     logging.info(f"Working on {assignment_tuple}.")
 
     #Set value to experiment
+    f_set(chromossome)
     time_.sleep(time)
     #Get value from experiment
-    y = f(chromossome)
+    y = f_read()
     if request_id != None:
         database_manager.update_assignment(y,request_id)
         sync_send()
