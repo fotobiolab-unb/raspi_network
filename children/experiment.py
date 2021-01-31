@@ -38,5 +38,9 @@ def f_set(X):
     print(X)
     return 0
 
+import random
+
 def f_read():
-    return 0
+    y = random.choice(list(open('sample_experiment.txt'))).rstrip()
+    y = y.split(" ")
+    return y

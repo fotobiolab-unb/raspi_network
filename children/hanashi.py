@@ -17,7 +17,10 @@ logging.basicConfig(filename="hanashi.log", level=logging.DEBUG)
 Module for communication among raspberry units
 """
 
-config = json.load(open("config.json"))
+dir_name = os.path.dirname(__file__)
+
+config = json.load(open(os.path.join(dir_name,"config.json")))
+
 
 def ping_to_children():
     """
@@ -26,9 +29,9 @@ def ping_to_children():
     id  -> index 0
     """
     children = database_manager.fetch_all_children()
-    id_children = list(map(lambda x: x[0], children))
+    id_children = list(map(lambda x: x["id"], children))
     #to_ping = grequests.map([grequests.get(x[1]) for x in children])
-    to_ping = [requests.get(x[1]) for x in children]
+    to_ping = [requests.get(x["url"]) for x in children]
     online = dict(filter(lambda x: x[1]!=None and x[1].ok,zip(id_children,to_ping)))
     return online
 
@@ -64,11 +67,10 @@ def step():
     Used on push
     """
     unresolved = check_exsiting_batch()
-    columns = ["id","batch_id","request_id","fitness","url","IP","chromossome_data"]
-    data = dict(zip(columns,x))
+    data = unresolved
     data["time"] = config["time"]
     #requests = [grequests.post(columns[4], data = data) for x in unresolved]
-    Requests = [requests.post(columns[4], data = data) for x in unresolved]
+    Requests = [requests.post(data["url"], data = data) for x in unresolved]
     #gmap = grequests.map(requests)
     gmap = Requests
     """
@@ -107,14 +109,14 @@ async def set(data):
 
 def static_set(assignment_tuple):
     #order: assignment.id,batch_id,request_id,fitness,url,IP,chromossome_data
-    data = dict(zip(["id","batch_id", "request_id", "fitness", "chromossome_data"], assignment_tuple))
+    data = assignment_tuple
 
     chromossome = data["chromossome_data"]
     if isinstance(chromossome, str):
         chromossome = eval(chromossome)
-    id = assignment_tuple[0]
-    request_id = assignment_tuple[2]
-    batch_id = assignment_tuple[1]
+    id = assignment_tuple["id"]
+    request_id = assignment_tuple["request_id"]
+    batch_id = assignment_tuple["batch_id"]
     time = config["time"]
 
     logging.info(f"Working on {assignment_tuple}.")

@@ -68,7 +68,8 @@ def home():
             database_manager.create_assignment(id,data,batch_id,request_id)
         #p = Process(target=sync())
         #p.start()
-        hanashi.static_set((id,batch_id,request_id,0,data))
+        #hanashi.static_set((id,batch_id,request_id,0,data))
+        hanashi.static_set(batch)
         return "ok", 200
 
 @app.route('/listen', methods=['GET', 'POST'])

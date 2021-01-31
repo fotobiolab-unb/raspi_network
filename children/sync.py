@@ -29,12 +29,12 @@ def sync():
         print(f"Sending {assignment}")
         logging.info(f"Sending {assignment}")
         #Posting back to main server
-        data = dict(zip(["id","batch_id", "request_id", "fitness", "chromossome_data"], assignment))
+        data = assignment
         url = config["server_addr"]
         r = requests.post(url,json=data)
         if r.ok:
             logging.info("ok")
-            database_manager.update_assignment(fitness=data["fitness"],request_id=data["request_id"], sync=1)
+            database_manager.update_assignment(fitness=data,request_id=data["request_id"], sync=1)
 
 def sync_send():
     print("Sending Assignments")
@@ -43,12 +43,12 @@ def sync_send():
         print(f"Sending {assignment}")
         logging.info(f"Sending {assignment}")
         #Posting back to main server
-        data = dict(zip(["id","batch_id", "request_id", "fitness", "chromossome_data"], assignment))
+        data = assignment
         url = config["server_addr"]
         r = requests.post(url,json=data)
         if r.ok:
             logging.info("ok")
-            database_manager.update_assignment(fitness=data["fitness"],request_id=data["request_id"], sync=1)
+            database_manager.update_assignment(fitness=data,request_id=data["request_id"], sync=1)
 
 if __name__ == "__main__":
     sync()

@@ -13,7 +13,9 @@ logging.basicConfig(filename="hanashi.log", level=logging.DEBUG)
 Module for communication among raspberry units
 """
 
-config = json.load(open("config.json"))
+dir_name = os.path.dirname(__file__)
+
+config = json.load(open(os.path.join(dir_name,"config.json")))
 
 def ping_to_children():
     """
@@ -22,12 +24,12 @@ def ping_to_children():
     id  -> index 0
     """
     children = database_manager.fetch_all_children()
-    id_children = list(map(lambda x: x[0], children))
+    id_children = list(map(lambda x: x["id"], children))
     #to_ping = grequests.map([grequests.get(x[1]) for x in children])
     to_ping = []
     for x in children:
         try:
-            to_ping.append(requests.get(x[1]))
+            to_ping.append(requests.get(x["url"]))
         except:
             to_ping.append(None)
     online = dict(filter(lambda x: x[1]!=None and x[1].ok,zip(id_children,to_ping)))
@@ -75,19 +77,14 @@ def step():
     """
     Used on push
     """
-    #What in the absolute fuck I did here?
     unresolved = check_exsiting_batch()
-    columns = ["id","batch_id","request_id","fitness","url","IP","chromossome_data"]
     data = []
     for packet in unresolved:
-        p_dict = dict(zip(columns,packet))
-        p_dict["time"] = config["time"]
-        p_dict["server_addr"] = config["server_addr"]
-        data.append(p_dict)
-    #Requests = [grequests.post(x["url"], json = x) for x in data]
+        packet["time"] = config["time"]
+        packet["server_addr"] = config["server_addr"]
+        data.append(packet)
     Requests = [requests.post(x["url"], json = x) for x in data]
     logging.info(f"Sending packet: {data}")
-    #gmap = grequests.map(requests)
     gmap = Requests
     """
     The output will be another dictionary whose values will be used to update the database. The result is caught by a get in Flask.

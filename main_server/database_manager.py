@@ -3,14 +3,28 @@ import json
 import time
 import logging
 import numpy as np
+import os
 logging.basicConfig(filename="database.log", level=logging.DEBUG)
 
-config = json.load(open("config.json"))
+dir_name = os.path.dirname(__file__)
+
+config = json.load(open(os.path.join(dir_name,"config.json")))
+y_column = json.load(open(os.path.join(dir_name,"y_column.json")))["y_column_names"]
+
+if not os.path.exists(config["database_path"]):
+    config["database_path"] = os.path.join(dir_name, "database.db")
+
+def dict_factory(cursor, row):
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d
 
 def db(database, commit=True):
     def decorator(func):
         def inner(*args, **kwargs):
             connection = sqlite3.connect(database)
+            connection.row_factory = dict_factory
             cursor = connection.cursor()
             R = func(cursor,*args,**kwargs)
             connection.commit() if commit else 0
@@ -106,23 +120,23 @@ def fetch_assignments(cursor, limit=5):
 @db(database=config["database_path"], commit=False)
 def get_new_batch_id(cursor):
     batch_id = cursor.execute("select batch_id from bio order by batch_id desc limit 1;").fetchone()
-    batch_id = batch_id[0]+1 if batch_id else 1 #Do not set to zero
+    batch_id = batch_id["batch_id"]+1 if batch_id else 1 #Do not set to zero
     logging.info(f"\tNew batch started with id {batch_id}")
     return batch_id
 
 @db(database=config["database_path"], commit=True)
 def get_exsiting_batch(cursor):
     batch_id = cursor.execute("select batch_id from assignment order by batch_id desc limit 1;").fetchone()
-    batch_id = batch_id[0] if batch_id else False
+    batch_id = batch_id["batch_id"] if batch_id else False
     data = []
     if batch_id:
-        data = cursor.execute(f"""select assignment.id,batch_id,request_id,fitness,url,IP,chromossome_data from assignment
+        data = cursor.execute(f"""select * from assignment
                                 join children on assignment.id=children.id
                                 where batch_id=? and status=0""", (batch_id,)).fetchall()
         if len(data)==0:
             """If this is empty, then all assignments are done. Move them to history."""
-            cursor.execute(f"""insert into bio(id, batch_id, chromossome_data, fitness, request_id)
-                            select id, batch_id, chromossome_data, fitness, request_id from assignment where assignment.batch_id=?;""", (batch_id,))
+            cursor.execute(f"""insert into bio(id, batch_id, chromossome_data, fitness, request_id, {', '.join(y_column)})
+                            select id, batch_id, chromossome_data, fitness, request_id, {', '.join(y_column)} from assignment where assignment.batch_id=?;""", (batch_id,))
             cursor.execute(f"""delete from assignment where batch_id=?;""", (batch_id,))
             print("All done")
     return data
@@ -139,7 +153,12 @@ def create_assignments(cursor,iterable,batch_id):
 
 @db(database=config["database_path"])
 def update_assignment(cursor,fitness,request_id):
-    cursor.execute(f"update assignment set status=1, fitness={fitness} where request_id={request_id};")
+    if isinstance(fitness,dict):
+        update_string = ", ".join([f"{k}='{fitness[k]}'" for k in y_column])
+    else:
+        update_string = ", ".join(list(map(lambda x: f"{x[0]}='{x[1]}'",zip(y_column,fitness))))
+    print("update_string:\n", update_string)
+    cursor.execute(f"update assignment set status=1, {update_string} where request_id={request_id};")
 
 def get_fitness_graph(cursor,limit=100):
     """
@@ -173,6 +192,4 @@ def get_best_individual(cursor, n=1):
 
 if __name__=="__main__":
     initialize_tables(config["database_path"])
-    add_new_child('127.0.0.1','localhost','http://www.google.com')
-    #print(get_new_batch_id())
     get_exsiting_batch()

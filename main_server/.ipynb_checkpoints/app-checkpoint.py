@@ -46,7 +46,7 @@ def home():
         return render_template('pages/home.html', children=list(online), graph=data["graph"], genome_name=genome_names, genome_graph=genome_graph)
     elif request.method == "POST":
         data = request.json
-        database_manager.update_assignment(fitness=data["fitness"], request_id=data["request_id"])
+        database_manager.update_assignment(fitness=data, request_id=data["request_id"])
         r = database_manager.get_exsiting_batch()
         if len(r)==0:
             #Updating status on cached memory
