@@ -24,27 +24,100 @@
       </table>
     </div>
   </div>
+      <div class="row">
+    <div class="column">
+         <label for="column_select">Select Column</label>
+         <select name="column_select" id="column_select">
+             {% for c in columns %}
+                 <option value="{{c}}">{{c}}</option>
+             {% endfor %}
+         </select> 
+    </div>
+    <div class="column">
+        <label for="limit">Row Limit</label>
+        <input type="number" id="limit" value=100>
+    </div>
+    <div>
+        <label for="reactor_id">Reactor Id</label>
+        <input type="number" id="reactor_id" value=1>
+    </div>
+    <div>
+        <label for="update_interval">Update Interval (ms)</label>
+        <input type="number" id="update_interval" value=60000>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column"><h1>Servers</h1></div>
+  </div>
   <div class="row">
     {% for name in genome_name %}
       <div class="column" id="{{name}}"></div>
     {% endfor %}
   </div>
   <div class="row">
+    <div class="column"><h1>Fitness</h1></div>
+  </div>
+  <div class="row">
     <div class="column" id="line_graph"></div>
+  </div>
+  <div class="row">
+      <div id="misc_graph_title"><h1></h1></div>
+  </div>
+  <div class="row">
+    <div class="column" id="misc_graph"></div>
   </div>
 </div>
 <script type="text/javascript" src="static/js/make_graph.js"></script>
 <script type="text/javascript">
     names = {{genome_name|safe}}
     data = {{genome_graph|safe}}
-    var colormap = Array(data[0][0].length)
-    for (let i = 0; i<colormap.length; i++){
-      colormap[i] = d3.interpolateInferno((i+1)/data[0][0].length);
+    function make_genome_graphs(names, data){
+        for(let i=0; i<names.length; i++){
+            $(`#${names[i]}`).html("")
+        }
+        var colormap = Array(data[0][0].length)
+        for (let i = 0; i<colormap.length; i++){
+          colormap[i] = d3.interpolateInferno((i+1)/data[0][0].length);
+        }
+        for(let i=0; i<names.length; i++){
+          make_graph(data[i],"#"+names[i], colormap)
+        }
     }
-    for(let i=0; i<names.length; i++){
-      make_graph(data[i],"#"+names[i], colormap)
-    }
+    make_genome_graphs(names, data)
     make_graph([{{ graph|safe }}], "#line_graph", ["#ff00ff"], fill_area=false)
+</script>
+<script type="text/javascript">
+    function get_column_data(){
+        $("#misc_graph").html("")
+        let request_string = `/graph?limit=${$("#limit")[0].value}&reactor_id=${$("#reactor_id")[0].value}&column=${$("#column_select")[0].value}`
+        let response = $.getJSON(request_string, function(graph_data){
+            $("#misc_graph_title").html(`<h1>${$("#column_select")[0].value}</h1>`)
+            make_graph([graph_data.graph], "#misc_graph", ["#ff00ff"], fill_area=false)
+        })
+    }
+    function update_evolution_graphs(){
+        let response = $.getJSON(`/update_home_data`, function(response){
+            //Making fitness graph
+            $("#line_graph").html("")
+            make_graph([response.fitness_graph], "#line_graph", ["#ff00ff"], fill_area=false)
+            
+            //Making genome graphgs
+            make_genome_graphs(response.genome_names, response.genome_graph)
+        })
+    }
+    function update(){
+        get_column_data()
+        update_evolution_graphs()
+    }
+    let timed_update = setInterval(update,parseInt($("#update_interval")[0].value))
+    $("#limit").change(update)
+    $("#reactor_id").change(update)
+    $("#column_select").change(update)
+    $("#update_interval").change(function(){
+        console.log(`Change update time to ${$("#update_interval")[0].value} ms`)
+        clearInterval(timed_update)
+        timed_update = setInterval(update,parseInt($("#update_interval")[0].value))
+    })
 </script>
 
 {% endblock %}

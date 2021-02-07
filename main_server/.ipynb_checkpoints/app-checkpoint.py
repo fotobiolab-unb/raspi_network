@@ -42,8 +42,10 @@ def home():
         #data = hanashi.get_home_data()#
         data = database_manager.get_home_data()
         online = hanashi.get_available_servers()
+        online = list(map(lambda x: list(x.values()), online))
         genome_names, genome_graph = hanashi.get_best_genome_data()
-        return render_template('pages/home.html', children=list(online), graph=data["graph"], genome_name=genome_names, genome_graph=genome_graph)
+        columns = database_manager.get_column_names()
+        return render_template('pages/home.html', children=list(online), graph=data["graph"], genome_name=genome_names, genome_graph=genome_graph, columns=columns)
     elif request.method == "POST":
         data = request.json
         database_manager.update_assignment(fitness=data, request_id=data["request_id"])
@@ -54,6 +56,31 @@ def home():
             if set_response==0:
                 logging.warn('set_response error')
         return "ok", 200
+
+@app.route('/graph')
+def graph():
+    column = request.args.get("column")
+    limit = int(request.args.get("limit"))
+    reactor_id = int(request.args.get("reactor_id"))
+    data = database_manager.get_graph(column=column, limit=limit, reactor_id=reactor_id)
+    return json.dumps({'graph':data}), 200, {'ContentType':'application/json'}
+
+@app.route('/update_home_data')
+def update_home_data():
+    data = database_manager.get_home_data()["graph"]
+    online = hanashi.get_available_servers()
+    online = list(map(lambda x: list(x.values()), online))
+    genome_names, genome_graph = hanashi.get_best_genome_data()
+    
+    response = {
+        "fitness_graph":data,
+        "online_servers":online,
+        "genome_names":genome_names,
+        "genome_graph":genome_graph
+    }
+    return json.dumps(response), 200, {'ContentType':'application/json'}
+    
+    
 
 @app.route('/assignments', methods=['GET', 'POST'])
 def assignments():
@@ -95,4 +122,5 @@ if not app.debug:
 
 if __name__ == '__main__':
     http_server = WSGIServer(('', 5000), app)
+    print("Open on port 5000")
     http_server.serve_forever()

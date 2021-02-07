@@ -20,11 +20,12 @@ def dict_factory(cursor, row):
         d[col[0]] = row[idx]
     return d
 
-def db(database, commit=True):
+def db(database, commit=True, row_factory=dict_factory):
     def decorator(func):
         def inner(*args, **kwargs):
             connection = sqlite3.connect(database)
-            connection.row_factory = dict_factory
+            if row_factory:
+                connection.row_factory = dict_factory
             cursor = connection.cursor()
             R = func(cursor,*args,**kwargs)
             connection.commit() if commit else 0
@@ -168,7 +169,7 @@ def get_fitness_graph(cursor,limit=100):
     y = list(map(lambda x: x[0], y))[::-1]
     return y
 
-@db(database=config["database_path"], commit=False)
+@db(database=config["database_path"], commit=False, row_factory=None)
 def get_home_data(cursor):
     """
     returns all data for the homepage
@@ -177,7 +178,7 @@ def get_home_data(cursor):
     data["graph"] = get_fitness_graph(cursor)
     return data
 
-@db(database=config["database_path"], commit=False)
+@db(database=config["database_path"], commit=False, row_factory=None)
 def get_genome_graph(cursor, id, limit=10):
     data = cursor.execute("select chromossome_data from bio where id=? order by batch_id desc limit ?", (id,limit)).fetchall()
     data = [eval(x[0]) for x in data]
@@ -185,10 +186,24 @@ def get_genome_graph(cursor, id, limit=10):
     data = list(filter(lambda x: len(x)==L, data))
     return data
 
-@db(database=config["database_path"], commit=False)
+@db(database=config["database_path"], commit=False, row_factory=None)
 def get_best_individual(cursor, n=1):
     q = cursor.execute("select id, max(fitness) from bio group by id order by fitness desc").fetchmany(n)
     return [x[0] for x in q]
+
+@db(database=config["database_path"], commit=False, row_factory=None)
+def get_column_names(cursor):
+    cursor.execute("select * from bio limit 1;")
+    col_data = cursor.description
+    columns = list(map(lambda x: x[0],col_data))
+    return columns
+
+@db(database=config["database_path"], commit=False, row_factory=None)
+def get_graph(cursor, column, limit, reactor_id):
+    y = cursor.execute(f"select {column} from bio where id=? order by batch_id desc limit ?", (reactor_id, limit)).fetchall()
+    print(y)
+    y = list(map(lambda x: x[0], y))[::-1]
+    return y
 
 if __name__=="__main__":
     initialize_tables(config["database_path"])
