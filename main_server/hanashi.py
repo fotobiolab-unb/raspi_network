@@ -7,6 +7,7 @@ import os
 import time
 import logging
 import requests
+from urllib.parse import urljoin
 logging.basicConfig(filename="hanashi.log", level=logging.DEBUG)
 
 """
@@ -123,6 +124,29 @@ def shadow_send(chromossome, address, time):
         
     }
     requests.post(address, json=packet)
+
+def arduino_command(command, servers = False):
+    """
+    Sends a command to connected arduino to a list of servers.
+    
+    `servers` must be a list of urls. Otherwise it sends the command to all available servers.
+    """
+    
+    servers = list(map(lambda x: x["url"],get_available_servers())) if not servers else servers
+    
+    packet = {
+        "id": None,
+        "command": command,
+        "batch_id": None,
+        "request_id": None,
+        "server_addr": config["server_addr"]
+    }
+    
+    for server in servers:
+        url = urljoin(server,"/command")
+        r = requests.post(url, json=packet)
+        if r!=None:
+            print(r.status_code,url)
 
 if __name__=="__main__":
     a = np.random.randint(0,10,(5,3))

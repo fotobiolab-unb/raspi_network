@@ -44,3 +44,6 @@ def f_read():
     y = random.choice(list(open('sample_experiment.txt'))).rstrip()
     y = y.split(" ")
     return y
+
+def f_command(c):
+    print(f"Received command {c}")

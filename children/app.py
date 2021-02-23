@@ -14,6 +14,7 @@ import asyncio
 from sync import sync
 from multiprocessing import Process
 from gevent.pywsgi import WSGIServer
+from experiment import f_command
 
 #----------------------------------------------------------------------------#
 # App Config.
@@ -78,7 +79,7 @@ def listen():
     Update information to arduino and save to database.
     """
     if request.method == "POST":
-        batch = request.json()
+        batch = request.json
         #Do whatever with the data
         id = batch["id"]
         data = batch["chromossome"]
@@ -97,7 +98,12 @@ def listen():
         p.start()
         return "ok", 200
 
-
+@app.route('/command', methods=['POST'])
+def command():
+    if request.method == "POST":
+        post = request.json
+        f_command(post["command"])
+        return "ok", 200
 
 if not app.debug:
     file_handler = FileHandler('error.log')
