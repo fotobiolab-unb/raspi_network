@@ -1,49 +1,68 @@
 import numpy as np
 import logging
 import random
-logging.basicConfig(filename="hanashi.log", level=logging.DEBUG)
-
-"""
-Wrapper for function used on the raspberries. Called on hanashi/static_set
-"""
-
-# def f(X):
-#     X = np.array(X)
-#     return 10*len(X)+(-X*X+10*np.cos(2*np.pi*X)).sum()
-
 import serial
 import json
 import time
+logging.basicConfig(filename="hanashi.log", level=logging.DEBUG)
 
-# def f(X):
-#     """
-#     Set spectra first then brightness
-#     """
-#     s = serial.Serial("/dev/ttyACM0",9600)
-#     s.write("manual_connect\r\n".encode("ascii"))
-#     s.write("set(brilho,100)\r\n".encode("ascii"))
-#     with open("../data/spectra/parameters.json") as f:
-#         param = json.load(f)
-#         param = sorted(param.items(), key= lambda x: x[0])
-        
-#         for p,x in zip(param, X):
-#             time.sleep(2)
-#             string = f"set({p[0]},{int(100*x)})\r\n" 
-#             print(string)
-#             s.write(string.encode("ascii"))
-#     return 0
+path = "/dev/ttyUSB0"
+timeout = 10
 
 def f_set(X):
-    print("Running Experiment")
-    print(X)
+    """
+    Set spectra first then brightness
+    """
+    s = serial.Serial(path,9600)
+    s.timeout = 4
+    s.readlines()
+    s.write("manual_connect\r\n".encode("ascii"))
+    s.timeout = 1
+    s.readlines()
+    if X!=None and X[0]!="":
+        s.write("set(brilho,100)\r\n".encode("ascii"))
+        s.timeout = 1
+        s.readlines()
+        with open("../data/spectra/parameters.json") as f:
+            param = json.load(f)
+            param = sorted(param.items(), key= lambda x: x[0])
+
+            for p,x in zip(param, X):
+                time.sleep(2)
+                string = f"set({p[0]},{int(100*x)})\r\n"
+                print(string)
+                s.write(string.encode("ascii"))
+                s.readlines()
+    s.close()
     return 0
 
-import random
-
 def f_read():
-    y = random.choice(list(open('sample_experiment.txt'))).rstrip()
+    """
+    Read info from Arduino
+    """
+    s = serial.Serial(path,9600)
+    s.timeout = 4
+    s.readlines()
+    s.write("manual_connect\r\n".encode("ascii"))
+    s.timeout = 1
+    s.readlines()
+    s.write("dados\r\n".encode("ascii"))
+    s.timeout = 10
+    y = s.read_until(b'\n').decode("ascii").strip("\n").strip("\r")
     y = y.split(" ")
+    print(f"RESPONSE: {y}")
+    s.close()
     return y
 
 def f_command(c):
-    print(f"Received command {c}")
+    """
+    Sends command to Arduino
+    """
+    s = serial.Serial(path,9600)
+    s.timeout = 4
+    s.readlines()
+    s.write("manual_connect\r\n".encode("ascii"))
+    s.timeout = 1
+    s.readlines()
+    s.timeout = 1
+    s.write(f"{c}\r\n".encode("ascii"))

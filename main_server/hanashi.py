@@ -47,16 +47,18 @@ def get_from_id(id,**kwargs):
     """
     return database_manager.fitness_from_batch_id(id, **kwargs)
 
-def create_new_batch(X):
+def create_new_batch(X,servers=False):
     """
     X: numpy.array
         Chromossome population matrix where lines are chromossomes.
+    servers: bool or list
+        List of reactor id's to send. Otherwise X is distributed along all online devices.
     """
-    online_devices = ping_to_children()
-    splits = np.array_split(X,len(online_devices))
+    servers = servers if isinstance(servers,list) else ping_to_children().keys()
+    splits = np.array_split(X,len(servers))
     #Creating assignment
     batch_id = database_manager.get_new_batch_id()
-    database_manager.create_assignments(zip(online_devices.keys(), splits),batch_id)
+    database_manager.create_assignments(zip(servers, splits),batch_id)
     return {'batch': database_manager.get_exsiting_batch(), 'id':batch_id}
 
 

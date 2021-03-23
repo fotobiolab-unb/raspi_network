@@ -114,6 +114,7 @@
     $("#reactor_id").change(update)
     $("#column_select").change(update)
     $("#update_interval").change(function(){
+        $("#misc_graph").html("")
         console.log(`Change update time to ${$("#update_interval")[0].value} ms`)
         clearInterval(timed_update)
         timed_update = setInterval(update,parseInt($("#update_interval")[0].value))

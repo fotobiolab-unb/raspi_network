@@ -79,8 +79,10 @@ def evolve2(mode, *args, **kwargs):
     ga.f = lambda x: fitness(x, mode)
     ga.run()
 
+
+
 if __name__=="__main__":
     # X = np.random.random_sample((4,3))
     # print(fitness(X))
     #evolve(mode="surface")
-    evolve2(mode="surface")
+    #evolve2(mode="surface")

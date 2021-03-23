@@ -43,7 +43,10 @@ def home():
         data = database_manager.get_home_data()
         online = hanashi.get_available_servers()
         online = list(map(lambda x: list(x.values()), online))
-        genome_names, genome_graph = hanashi.get_best_genome_data()
+        try:
+            genome_names, genome_graph = hanashi.get_best_genome_data()
+        except:
+            genome_names, genome_graph = [], []
         columns = database_manager.get_column_names()
         return render_template('pages/home.html', children=list(online), graph=data["graph"], genome_name=genome_names, genome_graph=genome_graph, columns=columns)
     elif request.method == "POST":

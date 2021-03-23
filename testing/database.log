@@ -24,3 +24,29 @@ DEBUG:parso.python.diff:parse_part from 1 to 1 (to 0 in part parser)
 DEBUG:parso.python.diff:diff parser end
 DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.0.64:2001
 DEBUG:urllib3.connectionpool:http://192.168.0.64:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.102
+DEBUG:urllib3.connectionpool:http://192.168.1.102:2001 "POST / HTTP/1.1" 200 2
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.0.64
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.102
+DEBUG:urllib3.connectionpool:http://192.168.1.102:2001 "GET / HTTP/1.1" 200 2
+INFO:root:	New batch started with id 9
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.102
+DEBUG:urllib3.connectionpool:http://192.168.1.102:2001 "POST / HTTP/1.1" 200 2
+INFO:root:Sending packet: [{'id': 2, 'batch_id': 9, 'request_id': 1, 'chromossome_data': '[2.41178997325747, 3.3729219444435925, 4.4691393074843955, 4.289894152126973, 2.487469667933918, 1.7182771927485752, 1.9483963959076904, 3.5829930409515094, 9.99964121419178, 4.384152905383771]', 'fitness': 0.0, 'status': 0, 'sync': 0, 'time': 1, 'amd': None, 'horas': None, 'comp': None, 'ag': None, 'vent': None, 'brilho': None, 'corpainel': None, 'modopainel': None, 'lbranco': None, 'lfull': None, 'l440': None, 'l470': None, 'l495': None, 'l530': None, 'l595': None, 'l634': None, 'l660': None, 'l684': None, 'temp': None, 'settemp': None, 'pelt': None, 'var22': None, 'modotemp': None, 'var24': None, 'var25': None, 'var26': None, 'var27': None, 'Lred': None, 'Lblue': None, 'Lir': None, 'vis_r': None, 'vis_b': None, 'vis_ir': None, 'densidade': None, 'densidadealvo': None, 'diluicaopwm': None, 'mododiluicao': None, 'diluicaototal': None, 'ph': None, 'var40': None, 'url': 'http://192.168.1.102:2001', 'IP': '192.168.1.102', 'name': 'R2', 'server_addr': 'http://192.168.1.100:5000'}]
+INFO:root:Executed batch post, 1 out of 1 returned 200.
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.0.64
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.102
+DEBUG:urllib3.connectionpool:http://192.168.1.102:2001 "GET / HTTP/1.1" 200 2
+INFO:root:	New batch started with id 10
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.102
+DEBUG:urllib3.connectionpool:http://192.168.1.102:2001 "POST / HTTP/1.1" 200 2
+INFO:root:Sending packet: [{'id': 2, 'batch_id': 10, 'request_id': 1, 'chromossome_data': '[2.41178997325747, 3.3729219444435925, 4.4691393074843955, 4.289894152126973, 2.487469667933918, 1.7182771927485752, 1.9483963959076904, 3.5829930409515094, 9.99964121419178, 4.384152905383771]', 'fitness': 0.0, 'status': 0, 'sync': 0, 'time': 1, 'amd': None, 'horas': None, 'comp': None, 'ag': None, 'vent': None, 'brilho': None, 'corpainel': None, 'modopainel': None, 'lbranco': None, 'lfull': None, 'l440': None, 'l470': None, 'l495': None, 'l530': None, 'l595': None, 'l634': None, 'l660': None, 'l684': None, 'temp': None, 'settemp': None, 'pelt': None, 'var22': None, 'modotemp': None, 'var24': None, 'var25': None, 'var26': None, 'var27': None, 'Lred': None, 'Lblue': None, 'Lir': None, 'vis_r': None, 'vis_b': None, 'vis_ir': None, 'densidade': None, 'densidadealvo': None, 'diluicaopwm': None, 'mododiluicao': None, 'diluicaototal': None, 'ph': None, 'var40': None, 'url': 'http://192.168.1.102:2001', 'IP': '192.168.1.102', 'name': 'R2', 'server_addr': 'http://192.168.1.100:5000'}]
+INFO:root:Executed batch post, 1 out of 1 returned 200.
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.0.64
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.102
+DEBUG:urllib3.connectionpool:http://192.168.1.102:2001 "GET / HTTP/1.1" 200 2
+INFO:root:	New batch started with id 11
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 192.168.1.102
+DEBUG:urllib3.connectionpool:http://192.168.1.102:2001 "POST / HTTP/1.1" 200 2
+INFO:root:Sending packet: [{'id': 2, 'batch_id': 11, 'request_id': 1, 'chromossome_data': '[2.41178997325747, 3.3729219444435925, 4.4691393074843955, 4.289894152126973, 2.487469667933918, 1.7182771927485752, 1.9483963959076904, 3.5829930409515094, 9.99964121419178, 4.384152905383771]', 'fitness': 0.0, 'status': 0, 'sync': 0, 'time': 1, 'amd': None, 'horas': None, 'comp': None, 'ag': None, 'vent': None, 'brilho': None, 'corpainel': None, 'modopainel': None, 'lbranco': None, 'lfull': None, 'l440': None, 'l470': None, 'l495': None, 'l530': None, 'l595': None, 'l634': None, 'l660': None, 'l684': None, 'temp': None, 'settemp': None, 'pelt': None, 'var22': None, 'modotemp': None, 'var24': None, 'var25': None, 'var26': None, 'var27': None, 'Lred': None, 'Lblue': None, 'Lir': None, 'vis_r': None, 'vis_b': None, 'vis_ir': None, 'densidade': None, 'densidadealvo': None, 'diluicaopwm': None, 'mododiluicao': None, 'diluicaototal': None, 'ph': None, 'var40': None, 'url': 'http://192.168.1.102:2001', 'IP': '192.168.1.102', 'name': 'R2', 'server_addr': 'http://192.168.1.100:5000'}]
+INFO:root:Executed batch post, 1 out of 1 returned 200.
