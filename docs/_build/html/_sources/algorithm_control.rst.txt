@@ -1,0 +1,7 @@
+algorithm\_control module
+=========================
+
+.. automodule:: algorithm_control
+   :members:
+   :undoc-members:
+   :show-inheritance:

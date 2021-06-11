@@ -1,0 +1,7 @@
+database\_manager module
+========================
+
+.. automodule:: database_manager
+   :members:
+   :undoc-members:
+   :show-inheritance:

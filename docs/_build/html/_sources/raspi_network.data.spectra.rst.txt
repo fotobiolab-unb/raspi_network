@@ -1,0 +1,13 @@
+raspi\_network.data.spectra namespace
+=====================================
+
+Submodules
+----------
+
+raspi\_network.data.spectra.optimize module
+-------------------------------------------
+
+.. automodule:: raspi_network.data.spectra.optimize
+   :members:
+   :undoc-members:
+   :show-inheritance:

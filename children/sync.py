@@ -4,6 +4,7 @@ import database_manager
 import logging
 import json
 import requests
+import os
 
 """
 Responsible for executing pending assignments.
@@ -13,7 +14,10 @@ Executes under the following conditions:
 """
 
 logging.basicConfig(filename="operator.log", level=logging.DEBUG)
-config = json.load(open("config.json"))
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
+
+config = json.load(open(os.path.join(__location__,'config.json')))
 
 def sync():
     print("sync running")

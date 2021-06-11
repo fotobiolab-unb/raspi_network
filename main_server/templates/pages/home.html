@@ -55,16 +55,16 @@
     {% endfor %}
   </div>
   <div class="row">
-    <div class="column"><h1>Fitness</h1></div>
-  </div>
-  <div class="row">
-    <div class="column" id="line_graph"></div>
-  </div>
-  <div class="row">
       <div id="misc_graph_title"><h1></h1></div>
   </div>
   <div class="row">
     <div class="column" id="misc_graph"></div>
+  </div>
+  <div class="row">
+    <div class="column"><h1>Fitness</h1></div>
+  </div>
+  <div class="row">
+    <div class="column" id="line_graph"></div>
   </div>
 </div>
 <script type="text/javascript" src="static/js/make_graph.js"></script>
@@ -83,8 +83,8 @@
           make_graph(data[i],"#"+names[i], colormap)
         }
     }
-    make_genome_graphs(names, data)
-    make_graph([{{ graph|safe }}], "#line_graph", ["#ff00ff"], fill_area=false)
+    //make_genome_graphs(names, data)
+    //make_graph([{{ graph|safe }}], "#line_graph", ["#ff00ff"], fill_area=false)
 </script>
 <script type="text/javascript">
     function get_column_data(){
@@ -92,7 +92,12 @@
         let request_string = `/graph?limit=${$("#limit")[0].value}&reactor_id=${$("#reactor_id")[0].value}&column=${$("#column_select")[0].value}`
         let response = $.getJSON(request_string, function(graph_data){
             $("#misc_graph_title").html(`<h1>${$("#column_select")[0].value}</h1>`)
+            console.log("GRAPH DATA",graph_data)
             make_graph([graph_data.graph], "#misc_graph", ["#ff00ff"], fill_area=false)
+        }).fail(function(e){
+            console.log("getJSON Error")
+            console.log(e)
+            console.log(e.responseText)
         })
     }
     function update_evolution_graphs(){
@@ -107,7 +112,7 @@
     }
     function update(){
         get_column_data()
-        update_evolution_graphs()
+        //update_evolution_graphs()
     }
     let timed_update = setInterval(update,parseInt($("#update_interval")[0].value))
     $("#limit").change(update)
@@ -119,6 +124,7 @@
         clearInterval(timed_update)
         timed_update = setInterval(update,parseInt($("#update_interval")[0].value))
     })
+    get_column_data()
 </script>
 
 {% endblock %}

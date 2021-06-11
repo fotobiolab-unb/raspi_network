@@ -1,0 +1,7 @@
+hanashi module
+==============
+
+.. automodule:: hanashi
+   :members:
+   :undoc-members:
+   :show-inheritance:

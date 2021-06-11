@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+      <title>Quickstart</title>
+    
+          <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="_static/theme.css " type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="_static/theme-vendors.js"></script> -->
+      <script src="_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="prev" title="Welcome to experiment_manager’s documentation!" href="index.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="index.html" class="home-link">
+    
+      <span class="site-name">experiment_manager</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="index.html#welcome-to-experiment-manager-s-documentation">Contents:</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 current"><a href="#" class="reference internal current">Quickstart</a>
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#hanashi-arduino-command-str-command-list-servers" class="reference internal">hanashi.arduino_command(str command,[list servers])</a></li>
+                
+                  <li class="toctree-l2"><a href="#class-control" class="reference internal">class control</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+    
+    <li>Quickstart</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="index.html"
+       title="previous chapter">← Welcome to experiment_manager’s documentation!</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section id="quickstart">
+<h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+<p>The most basic way to send a command and other IO controls to the microcontrollers connected to the clients (here assumed to be Arduinos) is through the <cite>experiment_0.py</cite> module. This module can be duplicated and modified at will to satisfy your needs and it won’t yield any problems as long as the copy still resides on the same folder or all its necessary libraries are properly referenced on <cite>$PYTHONPATH</cite> or <cite>sys.path</cite>. The module is composed of the following most important methods and classes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>experiment_0
+├── control
+├── hanashi.arduino_command
+├──stage_0_read
+├──stage_0_set
+</pre></div>
+</div>
+<section id="hanashi-arduino-command-str-command-list-servers">
+<h2><cite>hanashi.arduino_command(str command,[list servers])</cite><a class="headerlink" href="#hanashi-arduino-command-str-command-list-servers" title="Permalink to this headline">¶</a></h2>
+<p>Sends an arduino command via serial.
+- command(str): Command to be sent to the microcontroller.
+- servers[list]: List of urls for the destination hosts.</p>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>Sending a command <cite>set(brilho,100)</cite> to an Arduino connected to host <cite>192.168.0.1</cite> on port 2000:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">experiment_0</span> <span class="k">as</span> <span class="nn">e0</span>
+
+<span class="n">e0</span><span class="o">.</span><span class="n">hanashi</span><span class="o">.</span><span class="n">arduino_command</span><span class="p">(</span><span class="s2">&quot;set(brilho,100)&quot;</span><span class="p">,[</span><span class="s2">&quot;http://192.168.0.1:2000&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="class-control">
+<h2><cite>class control</cite><a class="headerlink" href="#class-control" title="Permalink to this headline">¶</a></h2>
+<p>Used to periodically increment variable <cite>brilho</cite> and make readings over time.</p>
+<section id="example-reading">
+<h3>Example - Reading<a class="headerlink" href="#example-reading" title="Permalink to this headline">¶</a></h3>
+<p>Making a reading on reactors 2 and 3 every 30 seconds:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">experiment_0</span> <span class="k">as</span> <span class="nn">e0</span>
+
+<span class="n">C</span> <span class="o">=</span> <span class="n">e0</span><span class="o">.</span><span class="n">control</span><span class="p">()</span>
+<span class="n">C</span><span class="o">.</span><span class="n">reactors</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">C</span><span class="o">.</span><span class="n">time_read</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">C</span><span class="o">.</span><span class="n">start_read</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Cancelling the process:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="o">.</span><span class="n">read_thread</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Since <cite>control</cite> is a class, it is possible to create several objects controlling different microcontroller subsets at different time reading variations.</p>
+</section>
+<section id="example-brilho">
+<h3>Example - Brilho<a class="headerlink" href="#example-brilho" title="Permalink to this headline">¶</a></h3>
+<p>Varying the microncontroller’s variable <cite>brilho</cite> every minute for reactor 2:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">experiment_0</span> <span class="k">as</span> <span class="nn">e0</span>
+
+<span class="n">C</span> <span class="o">=</span> <span class="n">e0</span><span class="o">.</span><span class="n">control</span><span class="p">()</span>
+<span class="n">C</span><span class="o">.</span><span class="n">reactors</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">C</span><span class="o">.</span><span class="n">time_brilho</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">C</span><span class="o">.</span><span class="n">start_brilho_ladder</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Canelling the process:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="o">.</span><span class="n">brilho_thread</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="index.html"
+       title="previous chapter">← Welcome to experiment_manager’s documentation!</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2021, Ícaro Lorran Lopes Costa; Dr. Luiz Fernando Roncaratti; Dr. Gabriela Cunha Possa.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.2 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.7.3.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

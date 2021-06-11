@@ -1,3 +1,4 @@
+simplejson
 python-memcached==1.58
 #also needs memcached on the system
 waiting==1.4.1

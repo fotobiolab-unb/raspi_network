@@ -1,0 +1,11 @@
+raspi\_network.data namespace
+=============================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   raspi_network.data.spectra
+   raspi_network.data.spectra_bk

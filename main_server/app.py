@@ -8,7 +8,7 @@ import logging
 from logging import Formatter, FileHandler
 logging.basicConfig(filename="server.log", level=logging.DEBUG)
 import os
-import json
+import simplejson as json
 import database_manager
 import hanashi
 import numpy as np
@@ -24,7 +24,10 @@ import time
 app = Flask(__name__)
 app.debug = True
 
-config = json.load(open('config.json'))
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
+
+config = json.load(open(os.path.join(__location__,'config.json')))
 
 #----------------------------------------------------------------------------#
 # Controllers.
@@ -41,12 +44,13 @@ def home():
         database_manager.get_exsiting_batch()
         #data = hanashi.get_home_data()#
         data = database_manager.get_home_data()
-        online = hanashi.get_available_servers()
-        online = list(map(lambda x: list(x.values()), online))
+        #online = hanashi.get_available_servers()
+        #online = list(map(lambda x: list(x.values()), online))
+        online=[]
         try:
             genome_names, genome_graph = hanashi.get_best_genome_data()
         except:
-            genome_names, genome_graph = [], []
+            genome_names, genome_graph = [], [[[0]]]
         columns = database_manager.get_column_names()
         return render_template('pages/home.html', children=list(online), graph=data["graph"], genome_name=genome_names, genome_graph=genome_graph, columns=columns)
     elif request.method == "POST":
@@ -66,24 +70,27 @@ def graph():
     limit = int(request.args.get("limit"))
     reactor_id = int(request.args.get("reactor_id"))
     data = database_manager.get_graph(column=column, limit=limit, reactor_id=reactor_id)
-    return json.dumps({'graph':data}), 200, {'ContentType':'application/json'}
+    print("DATA GRAPH", data)
+    return json.dumps({'graph':data}, ignore_nan=True), 200, {'ContentType':'application/json'}
 
 @app.route('/update_home_data')
 def update_home_data():
     data = database_manager.get_home_data()["graph"]
-    online = hanashi.get_available_servers()
-    online = list(map(lambda x: list(x.values()), online))
-    genome_names, genome_graph = hanashi.get_best_genome_data()
-    
+    print("DATA", data)
+    #online = hanashi.get_available_servers()
+    #online = list(map(lambda x: list(x.values()), online))
+    online = []
+    try:
+        genome_names, genome_graph = hanashi.get_best_genome_data()
+    except:
+        genome_names, genome_graph = [], [[[0]]]
     response = {
         "fitness_graph":data,
         "online_servers":online,
         "genome_names":genome_names,
         "genome_graph":genome_graph
     }
-    return json.dumps(response), 200, {'ContentType':'application/json'}
-    
-    
+    return json.dumps(response, ignore_nan=True), 200, {'ContentType':'application/json'}
 
 @app.route('/assignments', methods=['GET', 'POST'])
 def assignments():
@@ -124,6 +131,6 @@ if not app.debug:
 
 
 if __name__ == '__main__':
-    http_server = WSGIServer(('', 5000), app)
+    http_server = WSGIServer(("0.0.0.0", 5000), app)
     print("Open on port 5000")
     http_server.serve_forever()

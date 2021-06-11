@@ -1,0 +1,24 @@
+raspi\_network namespace
+========================
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   raspi_network.children
+   raspi_network.docs
+   raspi_network.main_server
+   raspi_network.testing
+
+Submodules
+----------
+
+raspi\_network.generate\_databases module
+-----------------------------------------
+
+.. automodule:: raspi_network.generate_databases
+   :members:
+   :undoc-members:
+   :show-inheritance:

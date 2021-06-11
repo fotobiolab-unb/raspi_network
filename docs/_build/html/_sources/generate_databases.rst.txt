@@ -1,0 +1,7 @@
+generate\_databases module
+==========================
+
+.. automodule:: generate_databases
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,53 @@
+raspi\_network.children namespace
+=================================
+
+Submodules
+----------
+
+raspi\_network.children.app module
+----------------------------------
+
+.. automodule:: raspi_network.children.app
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+raspi\_network.children.database\_manager module
+------------------------------------------------
+
+.. automodule:: raspi_network.children.database_manager
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+raspi\_network.children.experiment module
+-----------------------------------------
+
+.. automodule:: raspi_network.children.experiment
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+raspi\_network.children.experiment\_arduino module
+--------------------------------------------------
+
+.. automodule:: raspi_network.children.experiment_arduino
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+raspi\_network.children.hanashi module
+--------------------------------------
+
+.. automodule:: raspi_network.children.hanashi
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+raspi\_network.children.sync module
+-----------------------------------
+
+.. automodule:: raspi_network.children.sync
+   :members:
+   :undoc-members:
+   :show-inheritance:

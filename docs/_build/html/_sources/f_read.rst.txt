@@ -1,0 +1,7 @@
+f\_read module
+==============
+
+.. automodule:: f_read
+   :members:
+   :undoc-members:
+   :show-inheritance:

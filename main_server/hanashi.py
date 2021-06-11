@@ -97,12 +97,18 @@ def step():
     logging.info(notification)
     return unresolved
 
+def to_num(x):
+    try:
+        return float(x)
+    except (ValueError, TypeError):
+        return float('nan')
+
 def get_best_genome_data(n=3):
     """
     Creates a set of stacked graphs.
     """
     genome_graph_names = database_manager.get_best_individual(n)
-    raw = np.array([database_manager.get_genome_graph(x) for x in genome_graph_names])
+    raw = np.array([list(map(to_num,database_manager.get_genome_graph(x))) for x in genome_graph_names])
     genome_graph = np.array([[raw[j,:,:i].sum(axis=1) for i in range(1,len(raw[0][0])+1)] for j in range(len(raw))])
     # maximum, minimum = genome_graph.max(axis=1), genome_graph.min(axis=1)
     # maximum = np.repeat(maximum[:,np.newaxis,:],genome_graph.shape[1],axis=1)
@@ -149,6 +155,7 @@ def arduino_command(command, servers = False):
         r = requests.post(url, json=packet)
         if r!=None:
             print(r.status_code,url)
+            print(r.json())
 
 if __name__=="__main__":
     a = np.random.randint(0,10,(5,3))

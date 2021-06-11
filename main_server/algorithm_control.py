@@ -4,9 +4,13 @@ gapy: https://github.com/icarosadero/gapy
 """
 
 import sys
+import os
 import json
 import hanashi
-config = json.load(open("config.json"))
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
+
+config = json.load(open(os.path.join(__location__,'config.json')))
 sys.path.append(config["gapy_path"])
 from gapy import GA
 from gapy2 import GA as GA2
@@ -82,6 +86,7 @@ def evolve2(mode, *args, **kwargs):
 
 
 if __name__=="__main__":
+    pass
     # X = np.random.random_sample((4,3))
     # print(fitness(X))
     #evolve(mode="surface")

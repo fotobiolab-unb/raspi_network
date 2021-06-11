@@ -170,7 +170,18 @@ def create_assignments(cursor,iterable,batch_id):
 @db(database=config["database_path"])
 def update_assignment(cursor,fitness,request_id,sync=0):
     if isinstance(fitness,dict):
-        update_string = ", ".join([f"{k}='{fitness[k]}'" for k in y_column])
+        #update_string = ", ".join([f"{k}='{fitness[k]}'" for k in y_column])
+        update_string = ", ".join(list(map(lambda x: f"'{x[0]}'='{x[1]}'",fitness.items())))
+        columns = list(fitness.keys())
+        exists = list(list(map(lambda x: x["name"],cursor.execute(f"PRAGMA table_info(assignment)"))))
+        columns = set(map(lambda x: x.lower(),columns))
+        exists = set(map(lambda x: x.lower(),exists))
+        remainder = list(columns-exists)
+        print("COLS", columns)
+        print("EXISTS", exists)
+        for col in remainder:
+            cursor.execute(f"alter table assignment add column '{col}' text")
+            cursor.execute(f"alter table bio add column '{col}' text")
     else:
         update_string = ", ".join(list(map(lambda x: f"{x[0]}='{x[1]}'",zip(y_column,fitness))))
     print("update_string:\n", update_string)
