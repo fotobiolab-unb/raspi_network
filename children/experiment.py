@@ -47,6 +47,10 @@ try:
             #s.readlines()
             with open("../data/spectra/parameters.json") as f:
                 param = json.load(f)
+                try:
+                    del param["header"]
+                except KeyError:
+                    pass
                 param = sorted(param.items(), key= lambda x: x[0])
 
                 for p,x in zip(param, X):

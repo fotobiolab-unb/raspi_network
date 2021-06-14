@@ -15,7 +15,7 @@ Module for communication among raspberry units
 """
 
 dir_name = os.path.dirname(__file__)
-
+__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 config = json.load(open(os.path.join(dir_name,"config.json")))
 
 def ping_to_children():

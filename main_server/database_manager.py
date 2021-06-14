@@ -125,6 +125,10 @@ def fitness_from_batch_id(cursor, id, return_request_id=False):
         fitness = cursor.execute("select fitness, request_id from bio where batch_id=? order by timestamp asc;", (id,)).fetchall()
         return fitness
 
+@db(database=config["database_path"], commit=False, row_factory=dict_factory)
+def get_from_batch_id(cursor,batch_id):
+    return cursor.execute("select * from bio where batch_id=?;",(batch_id,)).fetchall()
+
 def fetch_recent_data_no_dec(cursor, limit=5):
     recent_data = cursor.execute(f"select * from bio order by timestamp desc limit {5};").fetchall()
     return recent_data
@@ -270,6 +274,25 @@ def get_graph(cursor, column, limit, reactor_id):
     y = list(map(lambda x: x[0], y))[::-1]
     y = list(map(to_number,y))
     return y
+
+@db(database=config["database_path"], commit=False, row_factory=dict_factory)
+def diff(cursor,batch_id_left,batch_id_right,target_column="densidadeatual",on_column="request_id",return_sum=False,return_ratio=False):
+    """
+    Calculates the difference between two rows over the same batch_id pair.
+    
+    `target_column`: Name of the column where the difference will be calculated.
+    `on_column`: Columns on `on_column` with the same values are subtracted together.
+    `batch_id_left`: Left side of the subtraction.
+    `batch_id_righ`: Right side of the subtraction.    
+    """
+    if not return_sum and not return_ratio:
+        return cursor.execute(f"select t11.{on_column}, t11.{target_column}-t22.{target_column} as difference from (select t1.{on_column}, t1.{target_column} from bio t1 where batch_id={batch_id_left}) as t11 join (select t2.{on_column}, t2.{target_column} from bio t2 where batch_id={batch_id_right}) as t22 on t11.{on_column} = t22.{on_column};").fetchall()
+    elif return_sum and not return_ratio:
+        return cursor.execute(f"select t11.{on_column}, t11.{target_column}-t22.{target_column} as difference, t11.{target_column}+t22.{target_column} as summation from (select t1.{on_column}, t1.{target_column} from bio t1 where batch_id={batch_id_left}) as t11 join (select t2.{on_column}, t2.{target_column} from bio t2 where batch_id={batch_id_right}) as t22 on t11.{on_column} = t22.{on_column};").fetchall()
+    elif return_sum and return_ratio:
+        return cursor.execute(f"select t11.{on_column}, t11.{target_column}-t22.{target_column} as difference, t11.{target_column}+t22.{target_column} as summation, (t11.{target_column}-t22.{target_column})/(t11.{target_column}+t22.{target_column}) as ratio from (select t1.{on_column}, t1.{target_column} from bio t1 where batch_id={batch_id_left}) as t11 join (select t2.{on_column}, t2.{target_column} from bio t2 where batch_id={batch_id_right}) as t22 on t11.{on_column} = t22.{on_column};").fetchall()
+    else:
+        return []
 
 if __name__=="__main__":
     initialize_tables(config["database_path"])

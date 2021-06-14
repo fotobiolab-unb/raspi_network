@@ -10,6 +10,10 @@ import os
 import threading
 import time
 
+"""
+Used to check if reactors have identical responses.
+"""
+
 class setInterval:
     def __init__(self,interval,action):
         self.interval = interval
@@ -107,9 +111,9 @@ class control:
         self.obrilho = self.brilho
         self.brilho_thread = setInterval(self.time_brilho,self.set_brilho_inc)
     def read(self):
-        print("Reading")
+        print(datetime.datetime.now().strftime("[%D - %H:%M:%S]") + "Reading")
         stage_0_read(self.reactors)
-        print("Read completed")
+        print(datetime.datetime.now().strftime("[%D - %H:%M:%S]") + "Read completed")
     def start_read(self):
         print("Read start", self.time_read)
         self.read_thread = setInterval(self.time_read,self.read)
