@@ -84,12 +84,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-Here's a blank template to get started:
-**To avoid retyping too much info. Do a search and replace with your text editor for the following:**
-`icarosadero`, `raspi_network`, `twitter_handle`, `icarosadero@gmail.com`, `HTTP Based Experiment Manager`, `Module to control remote microcontrollers over HTTP and SSH`
-
 
 ### Built With
 
@@ -170,17 +164,6 @@ Distributed under the GPLv3 License. See `LICENSE` for more information.
 Ícaro - icarosadero@gmail.com
 
 Project Link: [https://github.com/icarosadero/raspi_network](https://github.com/icarosadero/raspi_network)
-
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-
-* []()
-* []()
-* []()
-
-
 
 
 
