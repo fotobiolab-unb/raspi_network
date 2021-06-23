@@ -1,50 +1,65 @@
 import numpy as np
-import logging
 import random
 import serial
 import json
 import time
 import glob
-logging.basicConfig(filename="hanashi.log", level=logging.DEBUG)
 
-path = ""
-g = glob.glob("/dev/ttyACM*")
-if len(g)==0:
-    g=glob.glob("/dev/ttyUSB*")
-try:
-    timeout=10
-    path = sorted(g)[0] #Attept to auto find available Arduino (assuming that there is just one)
-    """
-    Initiating communications
-    """
-    s = serial.Serial(path,9600)
-    s.timeout = 10
-    time.sleep(4)
-    header = s.readlines()
-    header = list(map(lambda x: x.decode().rstrip(),header))
-    print(*header)
-    columns = header[2].split(" ")
-    print("COLUMN ARRANGEMENT", *columns)
-    time.sleep(4)
-    s.write("manual_connect\r\n".encode("ascii"))
-    time.sleep(4)
-    print(*s.readlines())
-    print("Arduino ready (apparently...)")
+"""
+This library is responsible to establish communication with the experiment. In this case we're using an Arduino board as microcontroller.
+"""
 
-    def f_set(X):
+def decode(lines):
+    """
+    Converts Arduino response to a string.
+    """
+    return list(map(lambda x: x.decode().strip(),lines))
+
+class arduino:
+    def __init__(self):
         """
-        Set spectra first then brightness
+        At start it will look for a serial device on /dev. Only works for GNU/Linux or some other Unix based system.
+        In the case of Windows, you have to replace the paths below with the proper path.
         """
-        #s = serial.Serial(path,9600)
-        #s.timeout = 4
-        #s.readlines()
-        #s.write("manual_connect\r\n".encode("ascii"))
-        #s.timeout = 1
-        #s.readlines()
-        if X!=[None] and X[0]!="":
-            #s.write("set(brilho,100)\r\n".encode("ascii"))
-            #s.timeout = 1
-            #s.readlines()
+        self.g = glob.glob("/dev/ttyACM*")
+        if len(self.g) == 0:
+            self.g = glob.glob("/dev/ttyUSB*")
+        self.g = sorted(self.g)[0]
+        self.timeout = 10
+        self.baud = 9600
+        self.serial = None
+    def send(self,command,returns=True):
+        """
+        Sends a command to Arduino and waits for a response.
+        If `returns` is set to `True`, it will return the response.
+        
+        Args:
+            command (str): Command to send to Arduino.
+            returns (bool): Whether or not to return a response.
+        """
+        t1 = time.time()
+        self.serial.write((command+"\r\n").encode("ascii"))
+        time.sleep(self.timeout)
+        response = decode(self.serial.readlines())
+        print("Connection Established.","TIME",time.time()-t1)
+        if returns:
+            return response
+    def connect(self):
+        """
+        Starts a connection to Arduino and keeps it awake.
+        """
+        self.serial = serial.Serial(self.g,self.baud)
+        self.serial.timeout = self.timeout
+        time.sleep(self.timeout)
+        header = decode(self.serial.readlines())
+        self.columns = header[2].split(" ")
+        response = self.send("manual_connect")
+        return header + response
+    def set(X):
+        """
+        Sends a parameter tuple to Arduino.
+        """
+        if X!=[None]:
             with open("../data/spectra/parameters.json") as f:
                 param = json.load(f)
                 try:
@@ -54,56 +69,19 @@ try:
                 param = sorted(param.items(), key= lambda x: x[0])
 
                 for p,x in zip(param, X):
-                    #time.sleep(2)
-                    string = f"set({p[0]},{int(100*x)})\r\n"
+                    string = f"set({p[0]},{int(100*x)})"
                     print(string)
-                    s.write(string.encode("ascii"))
-                    time.sleep(2)
-                    print("RESPONSE", *s.readlines())
-        #s.close()
-        return 0
-
-    def f_read():
+                    response = self.send(string)
+                    print(response)
+    def read(self):
         """
-        Read info from Arduino
+        Reads info from Arduino
         """
-        #s = serial.Serial(path,9600)
-        #s.timeout = 4
-        #print(*s.readlines())
-        #s.write("manual_connect\r\n".encode("ascii"))
-        #s.timeout = 4
-        #s.readlines()
-        s.write("dados\r\n".encode("ascii"))
-        s.timeout = 10
-        time.sleep(10)
-        #y = s.read_until(b'\n').decode("ascii").strip("\n").strip("\r")
-        y = list(map(lambda x: x.decode("ascii").strip(),s.readlines()))
+        response = self.send("dados")
+        
+        y = response
         y = y[0]
         y = y.split(" ")
-        y = dict(zip(columns,y))
+        y = dict(zip(self.columns,y))
         print(f"READ RESPONSE: {y}")
-        #s.close()
         return y
-
-    def f_command(c):
-        """
-        Sends command to Arduino
-        """
-        #s = serial.Serial(path,9600)
-        #s.timeout = 4
-        #print(*s.readlines())
-        #s.write("manual_connect\r\n".encode("ascii"))
-        #s.timeout = 1
-        #s.readlines()
-        s.timeout = 10
-        print("COMMAND", c)
-        s.write(f"{c}\r\n".encode("ascii"))
-        time.sleep(10)
-        r = s.readlines()
-        print("RESPONSE", *r)
-        return r
-
-except:
-    print("=================")
-    print("ARDUINO NOT FOUND")
-    print("=================")

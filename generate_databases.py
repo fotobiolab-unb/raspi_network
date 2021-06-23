@@ -3,6 +3,7 @@ import os
 import json
 
 #Reading columns
+"""
 y_columns = []
 with open("columns.txt",'r') as fh:
      for curline in fh:
@@ -14,7 +15,7 @@ with open("children/y_column.json", "w") as f:
     json.dump({"y_column_names":y_column_names},f)
 with open("main_server/y_column.json", "w") as f:
     json.dump({"y_column_names":y_column_names},f)
-
+"""
 
 #Creating children database
 children_db_path = "children/database.db"
@@ -33,18 +34,19 @@ batch_id integer,
 timestamp datetime default current_timestamp,
 chromossome_data text,
 fitness real,
-{y_columns_string},
+status integer default 0,
+sync integer default 0,
 foreign key(id) references children(id))
 """)
 conn.execute(f"""
 CREATE TABLE assignment (id integer,
 batch_id integer,
+timestamp datetime default current_timestamp,
 request_id integer primary key,
 chromossome_data text,
 fitness real default 0,
 status integer default 0,
 sync integer default 0,
-{y_columns_string},
 foreign key(id) references children(id)
 )
 """)
@@ -69,18 +71,19 @@ timestamp datetime default current_timestamp,
 chromossome_data text,
 fitness real,
 request_id,
-{y_columns_string},
+status integer default 0,
+sync integer default 0,
 foreign key(id) references children(id))
 """)
 conn.execute(f"""
 CREATE TABLE assignment (id integer,
 batch_id integer,
+timestamp datetime default current_timestamp,
 request_id integer primary key,
 chromossome_data text,
 fitness real default 0,
 status integer default 0,
 sync integer default 0,
-{y_columns_string},
 foreign key(id) references children(id)
 )
 """)

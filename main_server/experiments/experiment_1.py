@@ -11,6 +11,7 @@ import threading
 import time
 from waiting import wait
 import memcache
+import datetime
 
 """
 Finds resolution for fitness function.
@@ -133,11 +134,11 @@ class control:
         self.obrilho = self.brilho
         self.brilho_thread = setInterval(self.time_brilho,self.set_brilho_inc)
     def read(self):
-        print("Reading")
+        print(datetime.datetime.now().strftime("[%D - %H:%M:%S]"), "Reading")
         stage_0_read(self.reactors)
-        print("Read completed")
+        print(datetime.datetime.now().strftime("[%D - %H:%M:%S]"), "Read completed")
     def start_read(self):
-        print("Read start", self.time_read)
+        print(datetime.datetime.now().strftime("[%D - %H:%M:%S]"), "Read start", self.time_read)
         self.read_thread = setInterval(self.time_read,self.read)
     def set_color(self):
         assert len(self.colors) != 0 and isinstance(self.colors,list)

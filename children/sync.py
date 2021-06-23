@@ -1,10 +1,8 @@
 import sqlite3
-import hanashi
-import database_manager
-import logging
 import json
 import requests
 import os
+import time
 
 """
 Responsible for executing pending assignments.
@@ -13,46 +11,23 @@ Executes under the following conditions:
     - A call to the /listen route is done
 """
 
-logging.basicConfig(filename="operator.log", level=logging.DEBUG)
 __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
 config = json.load(open(os.path.join(__location__,'config.json')))
 
-def sync():
-    print("sync running")
-    for assignment in database_manager.get_exsiting_batch_gen():
-        #order: id,batch_id,request_id,fitness,chromossome_data
-        print(f"Executing {assignment}")
-        logging.info(f"Executing {assignment}")
-        hanashi.static_set(assignment)
-        logging.info("ok")
-
-    #Attempting to send done assignments
-    for assignment in database_manager.to_be_sent():
-        print(f"Sending {assignment}")
-        logging.info(f"Sending {assignment}")
-        #Posting back to main server
-        data = assignment
-        url = config["server_addr"]
+def send(data):
+    """
+    Sends directly back to main server without querying the database.
+    
+    Args:
+        data (dict): Data that will be sent back as JSON.
+    """
+    print("Sending Assignment")
+    print("[SENDING]", data)
+    url = config["server_addr"]
+    r = requests.post(url,json=data)
+    while not r.ok:
+        print("Send didn't work. Trying again in 5 seconds.","Error code", r.status_code)
+        time.sleep(5)
         r = requests.post(url,json=data)
-        if r.ok:
-            logging.info("ok")
-            database_manager.update_assignment(fitness=data,request_id=data["request_id"], sync=1)
-
-def sync_send():
-    print("Sending Assignments")
-    #Attempting to send done assignments
-    for assignment in database_manager.to_be_sent():
-        print(f"Sending {assignment}")
-        logging.info(f"Sending {assignment}")
-        #Posting back to main server
-        data = assignment
-        url = config["server_addr"]
-        r = requests.post(url,json=data)
-        if r.ok:
-            logging.info("ok")
-            database_manager.update_assignment(fitness=data,request_id=data["request_id"], sync=1)
-
-if __name__ == "__main__":
-    sync()

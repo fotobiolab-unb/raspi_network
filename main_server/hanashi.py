@@ -1,9 +1,13 @@
+import os
+import sys
+dir_name = os.path.dirname(__file__)
+__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+sys.path.append(__location__)
 import json
 import sqlite3
 import numpy as np
 import database_manager
 #import grequests
-import os
 import time
 import logging
 import requests
@@ -14,8 +18,6 @@ logging.basicConfig(filename="hanashi.log", level=logging.DEBUG)
 Module for communication among raspberry units
 """
 
-dir_name = os.path.dirname(__file__)
-__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 config = json.load(open(os.path.join(dir_name,"config.json")))
 
 def ping_to_children():
@@ -87,14 +89,14 @@ def step():
         packet["server_addr"] = config["server_addr"]
         data.append(packet)
     Requests = [requests.post(x["url"], json = x) for x in data]
-    logging.info(f"Sending packet: {data}")
+    print(f"Sending packets...")
     gmap = Requests
     """
     The output will be another dictionary whose values will be used to update the database. The result is caught by a get in Flask.
     """
     success = list(filter(lambda x: x!=None and x.ok,gmap))
     notification = f"Executed batch post, {len(success)} out of {len(Requests)} returned 200."
-    logging.info(notification)
+    print(notification)
     return unresolved
 
 def to_num(x):
@@ -133,11 +135,12 @@ def shadow_send(chromossome, address, time):
     }
     requests.post(address, json=packet)
 
-def arduino_command(command, servers = False):
+def arduino_command(command, servers = False, wait_return = False):
     """
     Sends a command to connected arduino to a list of servers.
     
     `servers` must be a list of urls. Otherwise it sends the command to all available servers.
+    `wait_return`: If False it will just send a command. Otherwise it waits for a response.
     """
     
     servers = list(map(lambda x: x["url"],get_available_servers())) if not servers else servers
@@ -147,7 +150,8 @@ def arduino_command(command, servers = False):
         "command": command,
         "batch_id": None,
         "request_id": None,
-        "server_addr": config["server_addr"]
+        "server_addr": config["server_addr"],
+        "return": wait_return
     }
     
     for server in servers:

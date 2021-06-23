@@ -3,18 +3,13 @@
 #----------------------------------------------------------------------------#
 
 from flask import Flask, render_template, request, jsonify, send_from_directory
-import logging
-# import listener
-from logging import Formatter, FileHandler
 import os
 import json
-import database_manager
-import hanashi
 import asyncio
-from sync import sync
 from multiprocessing import Process
 from gevent.pywsgi import WSGIServer
-from experiment import f_command
+from experiment import arduino
+from sync import send
 
 #----------------------------------------------------------------------------#
 # App Config.
@@ -27,6 +22,16 @@ __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
 config = json.load(open(os.path.join(__location__,'config.json')))
+
+#----------------------------------------------------------------------------#
+# Arduino IO.
+#----------------------------------------------------------------------------#
+
+dir_name = os.path.dirname(__file__)
+config = json.load(open(os.path.join(dir_name,"config.json")))
+__arduino__ = arduino()
+__headers__ = __arduino__.connect()
+print(*__headers__)
 
 #----------------------------------------------------------------------------#
 # Controllers.
@@ -47,6 +52,7 @@ def home():
         """
         print(request)
         batch = request.json
+        print("[RECEIVED]", batch)
         #Do whatever with the data
         id = batch["id"]
         data = batch["chromossome_data"]
@@ -67,45 +73,16 @@ def home():
             json.dump(config,open("config.json", "w"))
         except:
             pass
-        #-----------------
-        if request_id != None:
-            database_manager.create_assignment(id,data,batch_id,request_id)
-        #p = Process(target=sync())
-        #p.start()
-        #hanashi.static_set((id,batch_id,request_id,0,data))
-        hanashi.static_set(batch)
-        return "ok", 200
-
-@app.route('/listen', methods=['GET', 'POST'])
-def listen():
-    """
-    Update information to arduino and save to database.
-    """
-    if request.method == "POST":
-        batch = request.json
-        #Do whatever with the data
-        id = batch["id"]
-        data = batch["chromossome"]
-        batch_id = batch["batch_id"]
-        request_id = batch["request_id"]
-        #updating constants
-        server_url = batch["server_addr"]
-        time = batch["time"]
-        config = json.load(open("config.json"))
-        config["time"] = time
-        config["server_addr"] = server_url
-        json.dump(config,open("config.json", "w"))
-        #-----------------
-        database_manager.create_assignment(id,data,batch_id,request_id)
-        p = Process(target=sync)
-        p.start()
+        batch.update(__arduino__.read())
+        send(batch)
         return "ok", 200
 
 @app.route('/command', methods=['POST'])
 def command():
     if request.method == "POST":
         post = request.json
-        response = f_command(post["command"])
+        response = __arduino__.send(post["command"],returns=post["return"])
+        response = "ok" if response==None else response
         return jsonify(response), 200
 
 if not app.debug:

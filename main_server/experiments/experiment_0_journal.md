@@ -28,3 +28,6 @@ Watch sample growth and check software stability.
 
 ## Start Date
 ter jun  1 16:45:25 -03 2021
+
+## End Date
+ter jun  22 23:47:00 -03 2021

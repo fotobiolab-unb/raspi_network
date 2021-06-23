@@ -11,22 +11,25 @@ The most basic way to send a command and other IO controls to the microcontrolle
     ├──stage_0_read
     ├──stage_0_set
 
-`hanashi.arduino_command(str command,[list servers])`
+`hanashi.arduino_command(str command,[list servers],[boolean wait_return])`
 ---------
 
 Sends an arduino command via serial.
-- command(str): Command to be sent to the microcontroller.
-- servers[list]: List of urls for the destination hosts.
+
+* command(str): Command to be sent to the microcontroller.
+* servers[list]: List of urls for the destination hosts.
+* wait_return[boolean]: Whether or not to wait for a response.
 
 Example
 ~~~~~~~
 
-Sending a command `set(brilho,100)` to an Arduino connected to host `192.168.0.1` on port 2000:
+Sending a command `set(brilho,100)` to an Arduino connected to host `192.168.0.1` on port 2000 without waiting for a response:
 
 .. code-block:: python
 
     import experiment_0 as e0
     
+    e0.hanashi.arduino_command("quiet_connect") #Only needs to run once
     e0.hanashi.arduino_command("set(brilho,100)",["http://192.168.0.1:2000"])
 
 `class control`
@@ -68,6 +71,7 @@ Varying the microncontroller's variable `brilho` every minute for reactor 2:
     C = e0.control()
     C.reactors = [2]
     C.time_brilho = 60
+    C.brilho = 10
     C.start_brilho_ladder()
 
 Canelling the process:

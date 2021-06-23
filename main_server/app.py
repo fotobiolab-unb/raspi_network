@@ -55,6 +55,7 @@ def home():
         return render_template('pages/home.html', children=list(online), graph=data["graph"], genome_name=genome_names, genome_graph=genome_graph, columns=columns)
     elif request.method == "POST":
         data = request.json
+        print("[RECEIVED]", data)
         database_manager.update_assignment(fitness=data, request_id=data["request_id"])
         r = database_manager.get_exsiting_batch()
         if len(r)==0:
