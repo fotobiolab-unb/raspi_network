@@ -8,3 +8,5 @@ scipy==1.6.3
 simplejson==3.17.2
 tools==0.1.9
 waiting==1.4.1
+recommonmark
+sphinx-press-theme
