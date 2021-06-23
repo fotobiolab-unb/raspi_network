@@ -41,7 +41,7 @@
   <p align="center">
     Module to control remote microcontrollers over HTTP and SSH
     <br />
-    <a href="https://github.com/icarosadero/raspi_network"><strong>Explore the docs »</strong></a>
+    <a href="https://raspi-network.readthedocs.io/"><strong>Documentation»</strong></a>
     <br />
     <br />
     ·
