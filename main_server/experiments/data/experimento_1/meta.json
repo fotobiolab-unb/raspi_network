@@ -1,0 +1,37 @@
+{
+    "layout":
+        {
+            "densidade":{
+                "title": "Algae Density",
+                "yaxis_title": "Count",
+                "xaxis_title": "Elapsed Time (h)"
+            },
+            "ph":{
+                "title":"pH",
+                "yaxis_title":"pH",
+                "xaxis_title": "Elapsed Time (h)"
+            },
+            "temperatura":{
+                "title":"Temperature",
+                "yaxis_title":"°C",
+                "xaxis_title":"Elapsed Time (h)"
+            },
+            "crescimento":{
+                "title":"Algae Density Variation",
+                "yaxis_title": "Density Variation",
+                "xaxis_title": "Elapsed Time (h)"
+            },
+            "diluicao":{
+                "title":"Algae Growth Rate",
+                "yaxis_title": "Growth Rate",
+                "xaxis_title": "Elapsed Time (h)"
+            }
+        },
+    "axes":{
+            "densidade":"densidade",
+            "ph":"ph",
+            "temperatura":"temperature",
+            "crescimento":"diff",
+            "diluicao":"diluicaototal"
+    }
+}
