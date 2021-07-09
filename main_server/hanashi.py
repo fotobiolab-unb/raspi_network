@@ -20,6 +20,8 @@ Module for communication among raspberry units
 
 config = json.load(open(os.path.join(dir_name,"config.json")))
 
+__servers__ = []
+
 def ping_to_children():
     """
     A get gate suffices to check the connection.
@@ -39,8 +41,13 @@ def ping_to_children():
     return online
 
 def get_available_servers():
+    """
+    Pings open servers in the network. The url's are obtainted from the `children` table in the SQLite database.
+    """
+    
     online = ping_to_children()
     online = list(filter(lambda x: online[x].ok,online.keys()))
+    
     return database_manager.fetch_children_subset(online)
 
 def get_from_id(id,**kwargs):
@@ -51,10 +58,9 @@ def get_from_id(id,**kwargs):
 
 def create_new_batch(X,servers=False):
     """
-    X: numpy.array
-        Chromossome population matrix where lines are chromossomes.
-    servers: bool or list
-        List of reactor id's to send. Otherwise X is distributed along all online devices.
+    Args:
+        X (numpy.array): Chromossome population matrix where lines are chromossomes.
+        servers (bool)(list): List of reactor id's to send. Otherwise X is distributed along all online devices.
     """
     servers = servers if isinstance(servers,list) else ping_to_children().keys()
     splits = np.array_split(X,len(servers))
@@ -135,15 +141,25 @@ def shadow_send(chromossome, address, time):
     }
     requests.post(address, json=packet)
 
-def arduino_command(command, servers = False, wait_return = False):
+def arduino_command(command, servers = False, wait_return = False, server_ids = False):
     """
     Sends a command to connected arduino to a list of servers.
+    If `servers` is provided then `server_ids` is not read.
     
-    `servers` must be a list of urls. Otherwise it sends the command to all available servers.
-    `wait_return`: If False it will just send a command. Otherwise it waits for a response.
+    Args:
+        servers (list): List of url's to the servers.
+        wait_return (bool): Whether or not to wait for a response.
+        server_ids (list): List of id's to the servers.
     """
+    global __servers__
     
-    servers = list(map(lambda x: x["url"],get_available_servers())) if not servers else servers
+    if not servers:
+        if len(__servers__)==0:
+            __servers__ = get_available_servers()
+        if server_ids:
+            servers = list(map(lambda x: __servers__[x],server_ids))
+        else:
+            servers = list(__servers__.values())
     
     packet = {
         "id": None,
@@ -161,7 +177,5 @@ def arduino_command(command, servers = False, wait_return = False):
             print(r.status_code,url)
             print(r.json())
 
-if __name__=="__main__":
-    a = np.random.randint(0,10,(5,3))
-    print(a)
-    print(create_new_batch(a))
+#Setting global
+__servers__ = dict(map(lambda x: (x["id"],x["url"]),get_available_servers()))

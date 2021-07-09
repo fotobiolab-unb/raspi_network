@@ -4,6 +4,7 @@ import serial
 import json
 import time
 import glob
+import sys
 
 """
 This library is responsible to establish communication with the experiment. In this case we're using an Arduino board as microcontroller.
@@ -28,6 +29,7 @@ class arduino:
         self.timeout = 10
         self.baud = 9600
         self.serial = None
+        sys.stdout.flush()
     def send(self,command,returns=True):
         """
         Sends a command to Arduino and waits for a response.
@@ -41,7 +43,9 @@ class arduino:
         self.serial.write((command+"\r\n").encode("ascii"))
         time.sleep(self.timeout)
         response = decode(self.serial.readlines())
+        print("[ARDUINO_RESPONSE]", response)
         print("Connection Established.","TIME",time.time()-t1)
+        sys.stdout.flush()
         if returns:
             return response
     def connect(self):
@@ -54,6 +58,8 @@ class arduino:
         header = decode(self.serial.readlines())
         self.columns = header[2].split(" ")
         response = self.send("manual_connect")
+        self.send("quiet_connect")
+        sys.stdout.flush()
         return header + response
     def set(X):
         """
@@ -73,6 +79,7 @@ class arduino:
                     print(string)
                     response = self.send(string)
                     print(response)
+        sys.stdout.flush()
     def read(self):
         """
         Reads info from Arduino
@@ -84,4 +91,5 @@ class arduino:
         y = y.split(" ")
         y = dict(zip(self.columns,y))
         print(f"READ RESPONSE: {y}")
+        sys.stdout.flush()
         return y

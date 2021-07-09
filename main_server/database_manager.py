@@ -41,30 +41,6 @@ def db(database, commit=True, row_factory=dict_factory):
         return inner
     return decorator
 
-def initialize_tables(filename):
-    connection = sqlite3.connect(filename)
-    cursor = connection.cursor()
-    #Children IP table
-    cursor.execute("create table if not exists children (id integer primary key autoincrement,\
-                                                         url text not null,\
-                                                         IP text not null,\
-                                                         name text);")
-    cursor.execute("create table if not exists bio (id integer,\
-                                                    batch_id integer,\
-                                                    timestamp datetime default current_timestamp,\
-                                                    chromossome_data text,\
-                                                    fitness real,\
-                                                    request_id,\
-                                                    foreign key(id) references children(id));")
-    cursor.execute("create table if not exists assignment (id integer,\
-                                                           batch_id integer,\
-                                                           request_id integer primary key autoincrement,\
-                                                           chromossome_data text,\
-                                                           fitness real default 0,\
-                                                           status integer default 0,\
-                                                           foreign key(id) references children(id));")
-    connection.commit()
-
 @db(database=config["database_path"])
 def dump_bin_data(cursor,IP,fitness,chromossome_data):
     id = cursor.execute(f"select id from children where IP='{IP}'").fetchone()
@@ -156,11 +132,11 @@ def get_exsiting_batch(cursor):
             print("REMAINDER", remainder)
             for col in remainder:
                 try:
-                    cursor.execute(f"alter table assignment add column '{col}' text")
+                    cursor.execute(f"alter table assignment add column \"{col}\" text")
                 except:
                     pass
                 try:
-                    cursor.execute(f"alter table bio add column '{col}' text")
+                    cursor.execute(f"alter table bio add column \"{col}\" text")
                 except:
                     pass
             """If this is empty, then all assignments are done. Move them to history."""
@@ -197,8 +173,8 @@ def update_assignment(cursor,fitness,request_id):
         for col in remainder:
             try:
                 print("New columns found. Attempting to create them.")
-                cursor.execute(f"alter table assignment add column '{col}' text")
-                cursor.execute(f"alter table bio add column '{col}' text")
+                cursor.execute(f"alter table assignment add column \"{col}\" text")
+                cursor.execute(f"alter table bio add column \"{col}\" text")
                 print("Done")
             except Exception as e:
                 print("Column creation error:",e)

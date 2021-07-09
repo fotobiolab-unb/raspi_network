@@ -1,12 +1,16 @@
+import os
+__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 import sys
 sys.path.append("../")
 sys.path.append("../../testing")
+sys.path.append(os.path.join(__location__,"../"))
+sys.path.append(os.path.join(__location__,"../../testing"))
+from IPython.display import clear_output
 import spectra
 import hanashi
 import database_manager
 import numpy as np
 import json
-import os
 import threading
 import time
 from waiting import wait
@@ -16,7 +20,6 @@ import datetime
 """
 Finds resolution for fitness function.
 """
-__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 shared_memory = memcache.Client(['localhost'])
 
 class setInterval:
@@ -136,6 +139,7 @@ class control:
         self.brilho_thread = setInterval(self.time_brilho,self.set_brilho_inc)
     def read(self):
         os.system("clear")
+        clear_output()
         print(datetime.datetime.now().strftime("[%D - %H:%M:%S]"), "Reading")
         stage_0_read(self.reactors)
         print(datetime.datetime.now().strftime("[%D - %H:%M:%S]"), "Read completed")

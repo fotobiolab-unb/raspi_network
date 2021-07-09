@@ -1,12 +1,15 @@
+import os
+__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 import sys
 sys.path.append("../")
 sys.path.append("../../testing")
+sys.path.append(os.path.join(__location__,"../"))
+sys.path.append(os.path.join(__location__,"../../testing"))
 import spectra
 import hanashi
 import database_manager
 import numpy as np
 import json
-import os
 import threading
 import time
 import datetime

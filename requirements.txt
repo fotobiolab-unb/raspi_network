@@ -10,3 +10,4 @@ tools==0.1.9
 waiting==1.4.1
 recommonmark
 sphinx-press-theme
+sphinx_pdj_theme

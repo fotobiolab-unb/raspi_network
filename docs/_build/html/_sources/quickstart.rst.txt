@@ -32,6 +32,21 @@ Sending a command `set(brilho,100)` to an Arduino connected to host `192.168.0.1
     e0.hanashi.arduino_command("quiet_connect") #Only needs to run once
     e0.hanashi.arduino_command("set(brilho,100)",["http://192.168.0.1:2000"])
 
+You can also specify the host's id from the `assignments` table from the database. So, if host `192.168.0.1:2000` is registered with id 3 on the database, you can execute the same command as:
+
+.. code-block:: python
+
+    e0.hanashi.arduino_command("set(brilho,100)", server_ids=[3])
+
+Example
+~~~~~~~
+
+Sending the command `dados` to all hosts and wait for a response:
+
+.. code-block:: python
+
+    e0.hanashi.arduino_command("dados",wait_return=True)
+
 `class control`
 ---------------
 

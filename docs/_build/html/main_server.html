@@ -1,129 +1,127 @@
-<!DOCTYPE html>
-<html >
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="" lang="" version="-//W3C//DTD XHTML 1.1//EN" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-      <title>main_server package</title>
-    
-          <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-          <link rel="stylesheet" href="_static/theme.css " type="text/css" />
-      
-      <!-- sphinx script_files -->
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-      
-      <!-- bundled in js (rollup iife) -->
-      <!-- <script src="_static/theme-vendors.js"></script> -->
-      <script src="_static/theme.js" defer></script>
-    
-  <link rel="index" title="Index" href="genindex.html" />
-  <link rel="search" title="Search" href="search.html" />
-  <link rel="next" title="main_server.experiments namespace" href="main_server.experiments.html" />
-  <link rel="prev" title="main_server" href="main_server_toctree.html" /> 
+  
+  <title>main_server package &mdash; experiment_manager  documentation</title>
+  
+
+  
+
+  
+
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="_static/css/pdj.css" type="text/css" />
+
+  
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  
+    <link rel="stylesheet" href="_static/css/pdj.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="stylesheet" href="_static/css/darker.css" type="text/css" />
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="experiment_manager  documentation" href="index.html"/>
+        <link rel="up" title="main_server" href="main_server_toctree.html"/>
+        <link rel="next" title="main_server.experiments namespace" href="main_server.experiments.html"/>
+        <link rel="prev" title="main_server" href="main_server_toctree.html"/>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="cache-control" content="public" />
+    <meta name="robots" content="follow, all" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Add jQuery library -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
   </head>
 
-  <body>
-    <div id="app">
-    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
-  <router-link to="index.html" class="home-link">
-    
-      <span class="site-name">experiment_manager</span>
-    
-  </router-link>
+  <body class="wy-body-for-nav" role="document">
 
-  <div class="links">
-    <navlinks class="can-hide">
-
-
-
-    </navlinks>
-  </div>
-</navbar>
-
-      
-      <div class="sidebar-mask" @click="toggleSidebar(false)">
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        <a href="index.html" class="fa fa-home"> experiment_manager </a>
+        <div role="search">
+	  <form id ="rtd-search-form" class="wy-form"
+		action="search.html" method="get">
+	    <input type="text" name="q" placeholder="Search docs" />
+	    <input type="hidden" name="check_keywords" value="yes" />
+	    <input type="hidden" name="area" value="default" />
+	  </form>
+	</div>
       </div>
-        <sidebar @toggle-sidebar="toggleSidebar">
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	
           
-          <navlinks>
-            
-
-
-
-            
-          </navlinks><div id="searchbox" class="searchbox" role="search">
-  <div class="caption"><span class="caption-text">Quick search</span>
-    <div class="searchformwrapper">
-      <form class="search" action="search.html" method="get">
-        <input type="text" name="q" />
-        <input type="submit" value="Search" />
-        <input type="hidden" name="check_keywords" value="yes" />
-        <input type="hidden" name="area" value="default" />
-      </form>
-    </div>
-  </div>
-</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
-  
-    <div class="sidebar-group">
-      <p class="caption">
-        <span class="caption-text"><a href="index.html#http-based-experiment-manager">Contents:</a></span>
-      </p>
-      <ul class="">
-        
-          <li class="toctree-l1 "><a href="quickstart.html" class="reference internal ">Quickstart</a>
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 "><a href="main_server_toctree.html" class="reference internal ">main_server</a>
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 "><a href="children_toctree.html" class="reference internal ">children</a>
-
-            
-          </li>
-
-        
-      </ul>
-    </div>
-  
-</div>
-        </sidebar>
-
-      <page>
-          <div class="body-header" role="navigation" aria-label="navigation">
-  
-  <ul class="breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-    
-      <li><a href="main_server_toctree.html">main_server</a> &raquo;</li>
-    
-    <li>main_server package</li>
-  </ul>
-  
-
-  <ul class="page-nav">
-  <li class="prev">
-    <a href="main_server_toctree.html"
-       title="previous chapter">← main_server</a>
-  </li>
-  <li class="next">
-    <a href="main_server.experiments.html"
-       title="next chapter">main_server.experiments namespace →</a>
-  </li>
+          
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#hanashi-arduino-command-str-command-list-servers-boolean-wait-return"><cite>hanashi.arduino_command(str command,[list servers],[boolean wait_return])</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#class-control"><cite>class control</cite></a></li>
 </ul>
-  
-</div>
-<hr>
-          <div class="content" role="main" v-pre>
-            
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="main_server_toctree.html">main_server</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">main_server package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="children_toctree.html">children</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="children.html">children package</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+
+      </div>
+      &nbsp;
+    </nav>
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      <nav class="wy-nav-top" id="barra-mobile" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="#">Porão do Juca</a>
+      </nav>
+
+      <div class="wy-nav-content">
+	<div class="fundo-claro">
+	</div>
+	<div class="fundo-escuro">
+	</div>
+
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+	    
+	    <!-- <ul class="wy-breadcrumbs"> -->
+	    <!--   <li><a href="#">Docs</a> &raquo;</li> -->
+
+	    <!--   <li>Features</li> -->
+	    <!--   <li class="wy-breadcrumbs-aside"> -->
+
+	    <!-- 	<a href="_sources/index.txt" rel="nofollow"> View page source</a> -->
+
+	    <!--   </li> -->
+	    <!-- </ul> -->
+	    <!-- <hr/> -->
+	  </div>
+
+          <div role="main" class="">
+
+	    <div id="content" class="hfeed entry-container hentry">
   <div class="section" id="main-server-package">
 <h1>main_server package<a class="headerlink" href="#main-server-package" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="subpackages">
@@ -132,9 +130,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="main_server.experiments.html">main_server.experiments namespace</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="main_server.experiments.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="main_server.experiments.html#main-server-experiments-experiment-0-module">main_server.experiments.experiment_0 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="main_server.experiments.html#main-server-experiments-experiment-1-module">main_server.experiments.experiment_1 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="main_server.experiments.html#main-server-experiments-experiment-2-module">main_server.experiments.experiment_2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main_server.experiments.html#module-main_server.experiments.experiment_0">main_server.experiments.experiment_0 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main_server.experiments.html#module-main_server.experiments.experiment_1">main_server.experiments.experiment_1 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main_server.experiments.html#module-main_server.experiments.experiment_2">main_server.experiments.experiment_2 module</a></li>
 </ul>
 </li>
 </ul>
@@ -301,11 +299,6 @@ POST: Receives info from children.</p>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="main_server.database_manager.initialize_tables">
-<span class="sig-prename descclassname"><span class="pre">main_server.database_manager.</span></span><span class="sig-name descname"><span class="pre">initialize_tables</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main_server.database_manager.initialize_tables" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="main_server.database_manager.to_number">
 <span class="sig-prename descclassname"><span class="pre">main_server.database_manager.</span></span><span class="sig-name descname"><span class="pre">to_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main_server.database_manager.to_number" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -325,10 +318,18 @@ POST: Receives info from children.</p>
 <span id="main-server-hanashi-module"></span><h2>main_server.hanashi module<a class="headerlink" href="#module-main_server.hanashi" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="main_server.hanashi.arduino_command">
-<span class="sig-prename descclassname"><span class="pre">main_server.hanashi.</span></span><span class="sig-name descname"><span class="pre">arduino_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">servers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_return</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main_server.hanashi.arduino_command" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sends a command to connected arduino to a list of servers.</p>
-<p><cite>servers</cite> must be a list of urls. Otherwise it sends the command to all available servers.
-<cite>wait_return</cite>: If False it will just send a command. Otherwise it waits for a response.</p>
+<span class="sig-prename descclassname"><span class="pre">main_server.hanashi.</span></span><span class="sig-name descname"><span class="pre">arduino_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">servers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_return</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main_server.hanashi.arduino_command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a command to connected arduino to a list of servers.
+If <cite>servers</cite> is provided then <cite>server_ids</cite> is not read.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>servers</strong> (<em>list</em>) – List of url’s to the servers.</p></li>
+<li><p><strong>wait_return</strong> (<em>bool</em>) – Whether or not to wait for a response.</p></li>
+<li><p><strong>server_ids</strong> (<em>list</em>) – List of id’s to the servers.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -341,10 +342,12 @@ Never allow batch_id to be zero.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="main_server.hanashi.create_new_batch">
 <span class="sig-prename descclassname"><span class="pre">main_server.hanashi.</span></span><span class="sig-name descname"><span class="pre">create_new_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">servers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main_server.hanashi.create_new_batch" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="simple">
-<dt>X: numpy.array</dt><dd><p>Chromossome population matrix where lines are chromossomes.</p>
-</dd>
-<dt>servers: bool or list</dt><dd><p>List of reactor id’s to send. Otherwise X is distributed along all online devices.</p>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>numpy.array</em>) – Chromossome population matrix where lines are chromossomes.</p></li>
+<li><p><strong>servers</strong> (<em>bool</em><em>)</em><em>(</em><em>list</em>) – List of reactor id’s to send. Otherwise X is distributed along all online devices.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -352,7 +355,8 @@ Never allow batch_id to be zero.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="main_server.hanashi.get_available_servers">
 <span class="sig-prename descclassname"><span class="pre">main_server.hanashi.</span></span><span class="sig-name descname"><span class="pre">get_available_servers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main_server.hanashi.get_available_servers" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Pings open servers in the network. The url’s are obtainted from the <cite>children</cite> table in the SQLite database.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="main_server.hanashi.get_best_genome_data">
@@ -404,27 +408,72 @@ id  -&gt; index 0</p>
 </div>
 
 
-          </div>
-          <div class="page-nav">
-            <div class="inner"><ul class="page-nav">
-  <li class="prev">
-    <a href="main_server_toctree.html"
-       title="previous chapter">← main_server</a>
-  </li>
-  <li class="next">
-    <a href="main_server.experiments.html"
-       title="next chapter">main_server.experiments namespace →</a>
-  </li>
-</ul><div class="footer" role="contentinfo">
-      &#169; Copyright 2021, Ícaro Lorran Lopes Costa; Dr. Luiz Fernando Roncaratti; Dr. Gabriela Cunha Possa.
-    <br>
-    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.2 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.7.3.
-</div>
-            </div>
-          </div>
-      </page>
-    </div></div>
-    
-    
+	    </div>
+            <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="main_server.experiments.html" class="btn btn-neutral float-right" title="main_server.experiments namespace">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="main_server_toctree.html" class="btn btn-neutral" title="main_server"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, Ícaro Lorran Lopes Costa; Dr. Luiz Fernando Roncaratti; Dr. Gabriela Cunha Possa.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/jucacrispim/sphinx_pdj_theme">theme</a> provided by <a href="http://poraodojuca.net">Porão do Juca</a>.
+
+</footer>
+	</div>
+	</div>
+	  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+    <script type="text/javascript" src="_static/documentation_options.js">
+
+    </script>
+    <script type="text/javascript" src="_static/jquery.js">
+
+    </script>
+    <script type="text/javascript" src="_static/underscore.js">
+
+    </script>
+    <script type="text/javascript" src="_static/doctools.js">
+
+    </script>
+
+  
+
+   <script type="text/javascript"
+           src="_static/js/theme.js"></script>
+
+   <script type="text/javascript"
+           src="_static/js/pdj.js"></script>
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
   </body>
 </html>
